@@ -5,11 +5,7 @@
 ## 功能特性
 
 - ✅ 薪资计算自动化
-- ✅ 税务处理与申报
-- ✅ 员工信息管理
-- ✅ 薪资报表生成
-- ✅ 考勤系统集成
-- ✅ 多维度数据分析
+
 
 ## 项目结构
 
@@ -37,7 +33,7 @@ PayrollMaster/
 
 1. 克隆项目
 ```bash
-git clone https://github.com/yourusername/PayrollMaster.git
+git clone https://github.com/EspenCheng/PayrollMaster.git
 cd PayrollMaster
 ```
 
@@ -75,8 +71,7 @@ cd PayrollMaster
 
 ## 联系方式
 
-- 项目链接: [https://github.com/yourusername/PayrollMaster](https://github.com/yourusername/PayrollMaster)
-
+- 项目链接: [https://github.com/EspenCheng/PayrollMaster]
 ## 更新日志
 
 ### v1.0.0 (开发中)
