@@ -1,9 +1,9 @@
 # Implementation Plan: [FEATURE]
 
 **Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**Input**: Feature specification from `/specs/[###-feature-name]/02-功能规格说明书.md`
 
-**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
+**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/commands/03-实施计划.md` for the execution workflow.
 
 ## Summary
 
@@ -31,7 +31,14 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+根据薪资核算系统宪章，以下检查项必须通过：
+
+- [ ] **文档驱动开发**：功能需求和设计方案是否已在文档中明确记录
+- [ ] **统一命名规范**：所有变量、函数、类名是否使用驼峰命名法（camelCase）
+- [ ] **测试驱动开发**：是否计划为所有计算逻辑编写单元测试（覆盖率需≥90%）
+- [ ] **模块化架构**：是否按薪资计算、考勤管理、税务计算、员工信息等模块划分
+- [ ] **数据安全**：敏感信息处理方案是否已明确（加密、权限控制等）
+- [ ] **准确性优先**：金额计算是否使用Decimal类型，结果保留两位小数
 
 ## Project Structure
 
@@ -39,10 +46,10 @@
 
 ```text
 specs/[###-feature]/
-├── plan.md              # This file (/speckit.plan command output)
-├── research.md          # Phase 0 output (/speckit.plan command)
-├── data-model.md        # Phase 1 output (/speckit.plan command)
-├── quickstart.md        # Phase 1 output (/speckit.plan command)
+├── 03-实施计划.md              # This file (/speckit.plan command output)
+├── 07-技术研究报告.md          # Phase 0 output (/speckit.plan command)
+├── 04-数据模型设计.md        # Phase 1 output (/speckit.plan command)
+├── 06-快速开始指南.md        # Phase 1 output (/speckit.plan command)
 ├── contracts/           # Phase 1 output (/speckit.plan command)
 └── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
 ```

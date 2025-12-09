@@ -1,50 +1,124 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# PayrollMaster 薪资核算系统宪章
 
-## Core Principles
+## 核心原则
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### 一、文档驱动开发
+所有功能开发必须严格遵循项目文档中的规范和规则。业务逻辑、设计方案和接口定义必须在相关文档中明确记录后才能进行开发。文档是开发的唯一依据，任何偏离文档的行为都需要先更新文档并获得批准。
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+**理由**：薪资系统涉及复杂的计算逻辑和法规要求，文档是确保系统准确性和可维护性的基础。
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### 二、统一命名规范（强制要求）
+项目中所有变量的命名必须使用驼峰命名法（camelCase），包括但不限于：
+- 变量名：userName, salaryAmount, taxRate
+- 函数名：calculateTax(), getEmployeeData()
+- 类名：SalaryCalculator（类名首字母大写，其他用驼峰）
+- 文件名：salaryCalculator.py, employeeService.js
+- 数据库字段：employee_id 映射为 employeeId
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**理由**：统一的命名规范提高代码可读性和一致性，降低维护成本。即便是Python开发也遵循此规范以保持项目整体风格统一。
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### 三、测试驱动开发（不可协商）
+所有新功能必须遵循TDD流程：
+1. 编写测试用例（测试必须先于实现）
+2. 确认测试失败
+3. 编写最小化实现代码使测试通过
+4. 重构优化代码
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+薪资计算逻辑必须具备完整的单元测试覆盖率达到90%以上。
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+**理由**：薪资计算涉及财务数据，准确性至关重要。TDD确保每个计算逻辑都经过验证。
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### 四、模块化架构设计
+系统必须采用模块化设计：
+- 薪资计算模块独立
+- 考勤管理模块独立
+- 税务计算模块独立
+- 员工信息管理模块独立
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+模块间通过清晰的接口通信，避免直接依赖。
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+**理由**：模块化设计便于维护、测试和扩展，特别是薪资规则变更时影响范围可控。
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+### 五、代码审查制度
+所有代码变更必须经过同行审查：
+- 审查重点：业务逻辑正确性、性能影响、安全漏洞
+- 计算类代码需要至少2人审查
+- 审查者必须运行测试用例并验证结果
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**理由**：薪资系统的高风险特性要求多重验证机制。
+
+### 六、数据安全与隐私保护
+严格遵守数据安全要求：
+- 员工敏感信息（身份证号、银行账号）必须加密存储
+- 日志中不得记录完整身份证号或银行卡号
+- 数据访问需要权限控制
+- 定期进行安全审计
+
+**理由**：员工个人信息和薪资数据属于敏感信息，必须严格保护。
+
+### 七、准确性优先原则
+薪资计算的准确性高于性能优化：
+- 所有浮点数计算必须使用Decimal类型
+- 金额计算保留两位小数，第三位四舍五入
+- 税费计算遵循最新税法规定
+- 计算结果需要双人复核机制
+
+**理由**：薪资计算的错误直接影响员工利益，不容有失。
+
+## 开发约束
+
+### 技术栈要求
+- 后端：Python 3.9+（强制使用驼峰命名）
+- 数据库：支持事务的关系型数据库
+- 缓存：用于提高查询性能
+- 日志：结构化日志记录
+
+### 性能标准
+- 薪资计算响应时间：< 2秒（1000人以下）
+- 系统并发支持：≥ 100用户
+- 数据一致性：强一致性要求
+
+### 合规要求
+- 遵循当地劳动法规定
+- 符合税务申报要求
+- 数据存储符合隐私保护法规
+
+## 开发工作流
+
+### 开发流程
+1. 需求分析 → 文档记录
+2. 设计评审 → 文档更新
+3. 测试用例编写 → 文档补充
+4. 开发实现 → 编码规范检查
+5. 自测 → 测试覆盖率验证
+6. 同行评审 → 审查清单验证
+7. 集成测试 → 系统测试
+8. 部署上线 → 变更记录
+
+### 质量门禁
+- 测试覆盖率 < 90% 禁止合并
+- 代码审查未通过禁止合并
+- 文档不完整禁止合并
+- 性能测试失败禁止合并
+
+## 治理规则
+
+### 宪章地位
+本宪章凌驾于所有其他开发实践之上，是项目的最高准则。任何开发决策都必须符合本宪章规定。
+
+### 修订流程
+1. 修订提案必须书面说明原因和影响
+2. 全体开发团队评审
+3. 管理层批准
+4. 更新版本号和修订日期
+5. 通知所有相关人员
+
+### 合规检查
+所有Pull Request必须验证以下合规项：
+- [ ] 代码符合命名规范
+- [ ] 测试用例完整
+- [ ] 文档已更新
+- [ ] 性能影响评估
+- [ ] 安全风险评估
+
+**Version**: 1.0.0 | **Ratified**: 2025-12-09 | **Last Amended**: 2025-12-09

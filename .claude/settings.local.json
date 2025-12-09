@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(echo:*)",
+      "Bash(.specify/scripts/powershell/update-agent-context.ps1 -AgentType claude)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
