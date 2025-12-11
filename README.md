@@ -75,14 +75,73 @@ PayrollMaster/
    - API文档: http://localhost:8000/docs
    - pgAdmin: http://localhost:5050
 
-详细安装说明请参考 [QUICKSTART.md](./QUICKSTART.md)
+详细安装说明请参考 [环境配置指南](./docs/environment-setup.md)
 
-## 📚 文档
+## 📚 完整文档导航
 
-- [快速启动指南](./QUICKSTART.md) - 快速搭建开发环境
-- [开发工作流](./docs/DEVELOPMENT_WORKFLOW.md) - 开发规范和流程
-- [环境配置](./ENVIRONMENT_SETUP.md) - 环境变量说明
-- [Docker开发指南](./DOCKER_DEV_GUIDE.md) - Docker使用说明
+### 🔧 开发环境文档
+
+| 文档 | 描述 | 链接 |
+|------|------|------|
+| 环境配置指南 | 环境要求、安装步骤、依赖管理 | [查看](./docs/environment-setup.md) |
+| Docker开发指南 | Docker开发环境配置、使用说明 | [查看](./docs/docker-development.md) |
+| 开发工作流 | 开发规范、流程说明 | [查看](./docs/DEVELOPMENT_WORKFLOW.md) |
+
+### 📋 Speckit工作流文档
+
+| 组件 | 描述 | 链接 |
+|------|------|------|
+| 宪章 | 项目开发最高准则和规范 | [查看](./.specify/memory/constitution.md) |
+| 模板 | 规格说明、实施计划、任务模板 | [查看](./.specify/templates/) |
+| 命令 | Speckit命令参考文档 | [查看](./.claude/commands/) |
+
+### 📖 需求规格文档
+
+| 文档 | 描述 | 优先级 | 链接 |
+|------|------|--------|------|
+| 功能规格说明书 | 定义系统功能需求、用户故事 | ⭐⭐⭐ | [查看](./specs/spec.md) |
+| 实施计划 | 技术方案、架构设计、开发步骤 | ⭐⭐⭐ | [查看](./specs/plan.md) |
+| 任务清单 | 分解具体开发任务 | ⭐⭐⭐ | [查看](./specs/tasks.md) |
+| 数据模型设计 | 数据库结构、实体关系 | ⭐⭐ | [查看](./specs/data-model.md) |
+| 技术研究报告 | 技术选型、调研结果 | ⭐⭐ | [查看](./specs/research.md) |
+| 快速开始指南 | 快速上手指南 | ⭐ | [查看](./specs/quickstart.md) |
+
+### 📂 专项文档
+
+#### 辅助指南 (guides/)
+- [Excel格式规范](./specs/guides/excel-format-spec.md) - Excel导入导出格式说明
+- [前端架构设计](./specs/guides/frontend-architecture.md) - 前端系统架构
+- [前端设计规范](./specs/guides/frontend-design-spec.md) - UI/UX设计标准
+- [项目编码规范](./specs/guides/project-coding-standards.md) - 通用编码标准
+- [Python编码规范](./specs/guides/python-coding-standards.md) - Python开发规范
+- [数据导出方案](./specs/guides/project-export-solution.md) - 数据导出解决方案
+- [技术栈分析](./specs/guides/tech-stack-analysis.md) - 技术选型分析
+- [技术栈总结](./specs/guides/tech-stack-summary.md) - 技术栈概览
+
+#### API契约 (contracts/)
+- [API端点规范](./specs/contracts/api-endpoints.md) - REST API接口定义
+
+#### 检查清单 (checklists/)
+- [需求检查清单](./specs/checklists/requirements-checklist.md) - 需求验证清单
+- [综合检查清单](./specs/checklists/comprehensive.md) - 综合质量检查
+
+#### Excel模板 (excel-templates/)
+- [模板说明](./specs/excel-templates/template-guide.md) - Excel模板使用指南
+- [导入规范](./specs/excel-templates/import/import-spec.md) - 数据导入格式
+- [导出规范](./specs/excel-templates/export/export-spec.md) - 数据导出格式
+- [Web展示结构](./specs/excel-templates/web-display/) - 前端表格展示配置
+
+#### 业务规则 (rules/)
+- [薪资计算逻辑](./specs/rules/payroll-calculation.md) - 薪资计算核心算法
+- [薪资变量定义](./specs/rules/payroll-variables.md) - 薪资相关变量说明
+
+### 📊 项目统计
+
+- **总文档数**: 40+ 个文档文件
+- **Speckit命令**: 9 个工作流命令
+- **模板文件**: 6 个规格模板
+- **核心规格**: 6 个主要规格文档
+- **辅助指南**: 10+ 个专项指南
 
 ## 🎯 功能特性
 
