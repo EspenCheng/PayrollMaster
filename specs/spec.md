@@ -209,11 +209,11 @@
 - **A**: 系统将使用预定义的变量映射文档和计算规则文档，确保数据字段和计算逻辑的准确性。
 
 - **Q**: 薪资核算变量和计算规则如何管理？
-- **A**: 已在项目中建立规则管理目录 `specs/rules/`，包含 `44-薪资变量定义.md`（变量定义文档）和 `43-薪资计算逻辑.md`（计算逻辑文档），开发时必须严格遵循这两个文档的定义。
+- **A**: 已在项目中建立规则管理目录 `docs/rules/`，包含 `payroll-variables.md`（变量定义文档）和 `payroll-calculation.md`（计算逻辑文档），开发时必须严格遵循这两个文档的定义。
 
 - **Q**: Excel表格模板如何管理？
 - **A**: Excel表格模板文件统一管理：
-  - **模板目录**: `specs/excel-templates/`，包含导入模板(import/)、导出模板(export/)和Web展示结构(web-display/)三个子目录
+  - **模板目录**: `docs/excel-templates/`，包含导入模板(import/)、导出模板(export/)和Web展示结构(web-display/)三个子目录
   - **参考文件**: 用户提供的原始表格文件位于 `C:\Users\Espen\Desktop\` 目录下：
     - `dataSubmissionReport.xlsx` - 数据导入参考
     - `dataExportReport.xlsx` - 数据导出参考
