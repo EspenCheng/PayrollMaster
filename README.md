@@ -79,13 +79,15 @@ PayrollMaster/
 
 ## 📚 完整文档导航
 
-### 🔧 开发环境文档
+### 📂 docs/ 目录文档
 
 | 文档 | 描述 | 链接 |
 |------|------|------|
 | 环境配置指南 | 环境要求、安装步骤、依赖管理 | [查看](./docs/environment-setup.md) |
 | Docker开发指南 | Docker开发环境配置、使用说明 | [查看](./docs/docker-development.md) |
-| 开发工作流 | 开发规范、流程说明 | [查看](./docs/DEVELOPMENT_WORKFLOW.md) |
+| 开发工作流 | 混合开发模式流程、规范说明 | [查看](./docs/DEVELOPMENT_WORKFLOW.md) |
+| 变量映射文档 | 薪资计算变量映射关系 | [查看](./docs/VARIABLE_MAPPING.md) |
+| references/ | 参考文档目录 | [查看](./docs/references/) |
 
 ### 📋 Speckit工作流文档
 
@@ -137,11 +139,12 @@ PayrollMaster/
 
 ### 📊 项目统计
 
-- **总文档数**: 40+ 个文档文件
-- **Speckit命令**: 9 个工作流命令
-- **模板文件**: 6 个规格模板
-- **核心规格**: 6 个主要规格文档
-- **辅助指南**: 10+ 个专项指南
+- **总文档数**: 50 个文档文件
+- **docs/ 目录**: 4 个开发环境文档
+- **specs/ 核心**: 7 个核心规格文档
+- **specs/guides/**: 11 个辅助指南文档
+- **specs/ 其他**: 11 个专项子目录文档
+- **Speckit文档**: 15 个工作流和模板文件
 
 ## 🎯 功能特性
 
