@@ -39,8 +39,19 @@ PayrollMaster/
 │   ├── src/app/            # App Router页面
 │   ├── src/components/     # React组件
 │   └── src/lib/            # 工具库
-├── docs/                   # 项目文档
-├── specs/                  # 需求规格说明
+├── docs/                   # 📚 所有项目文档（整合后）
+│   ├── guides/             # 项目指南和规范
+│   ├── contracts/          # API契约文档
+│   ├── checklists/         # 检查清单
+│   ├── excel-templates/    # Excel模板和说明
+│   ├── rules/              # 业务规则文档
+│   ├── data-model.md       # 数据模型设计
+│   ├── research.md         # 技术研究报告
+│   └── quickstart.md       # 快速开始指南
+├── specs/                  # Speckit核心工作流文档
+│   ├── spec.md             # 功能规格说明书
+│   ├── plan.md             # 实施计划
+│   └── tasks.md            # 任务清单
 ├── scripts/                # 工具脚本
 └── docker-compose.yml      # Docker配置
 ```
@@ -97,54 +108,58 @@ PayrollMaster/
 | 模板 | 规格说明、实施计划、任务模板 | [查看](./.specify/templates/) |
 | 命令 | Speckit命令参考文档 | [查看](./.claude/commands/) |
 
-### 📖 需求规格文档
+### 📖 Speckit核心文档
 
 | 文档 | 描述 | 优先级 | 链接 |
 |------|------|--------|------|
 | 功能规格说明书 | 定义系统功能需求、用户故事 | ⭐⭐⭐ | [查看](./specs/spec.md) |
 | 实施计划 | 技术方案、架构设计、开发步骤 | ⭐⭐⭐ | [查看](./specs/plan.md) |
 | 任务清单 | 分解具体开发任务 | ⭐⭐⭐ | [查看](./specs/tasks.md) |
-| 数据模型设计 | 数据库结构、实体关系 | ⭐⭐ | [查看](./specs/data-model.md) |
-| 技术研究报告 | 技术选型、调研结果 | ⭐⭐ | [查看](./specs/research.md) |
-| 快速开始指南 | 快速上手指南 | ⭐ | [查看](./specs/quickstart.md) |
+
+### 📚 项目技术文档
+
+| 文档 | 描述 | 链接 |
+|------|------|------|
+| 数据模型设计 | 数据库结构、实体关系 | [查看](./docs/data-model.md) |
+| 技术研究报告 | 技术选型、调研结果 | [查看](./docs/research.md) |
+| 快速开始指南 | 快速上手指南 | [查看](./docs/quickstart.md) |
 
 ### 📂 专项文档
 
 #### 辅助指南 (guides/)
-- [Excel格式规范](./specs/guides/excel-format-spec.md) - Excel导入导出格式说明
-- [前端架构设计](./specs/guides/frontend-architecture.md) - 前端系统架构
-- [前端设计规范](./specs/guides/frontend-design-spec.md) - UI/UX设计标准
-- [项目编码规范](./specs/guides/project-coding-standards.md) - 通用编码标准
-- [Python编码规范](./specs/guides/python-coding-standards.md) - Python开发规范
-- [数据导出方案](./specs/guides/project-export-solution.md) - 数据导出解决方案
-- [技术栈分析](./specs/guides/tech-stack-analysis.md) - 技术选型分析
-- [技术栈总结](./specs/guides/tech-stack-summary.md) - 技术栈概览
+- [Excel格式规范](./docs/guides/excel-format-spec.md) - Excel导入导出格式说明
+- [前端架构设计](./docs/guides/frontend-architecture.md) - 前端系统架构
+- [前端设计规范](./docs/guides/frontend-design-spec.md) - UI/UX设计标准
+- [项目编码规范](./docs/guides/project-coding-standards.md) - 通用编码标准
+- [Python编码规范](./docs/guides/python-coding-standards.md) - Python开发规范
+- [数据导出方案](./docs/guides/project-export-solution.md) - 数据导出解决方案
+- [技术栈分析](./docs/guides/tech-stack-analysis.md) - 技术选型分析
+- [技术栈总结](./docs/guides/tech-stack-summary.md) - 技术栈概览
 
 #### API契约 (contracts/)
-- [API端点规范](./specs/contracts/api-endpoints.md) - REST API接口定义
+- [API端点规范](./docs/contracts/api-endpoints.md) - REST API接口定义
 
 #### 检查清单 (checklists/)
-- [需求检查清单](./specs/checklists/requirements-checklist.md) - 需求验证清单
-- [综合检查清单](./specs/checklists/comprehensive.md) - 综合质量检查
+- [需求检查清单](./docs/checklists/requirements-checklist.md) - 需求验证清单
+- [综合检查清单](./docs/checklists/comprehensive.md) - 综合质量检查
 
 #### Excel模板 (excel-templates/)
-- [模板说明](./specs/excel-templates/template-guide.md) - Excel模板使用指南
-- [导入规范](./specs/excel-templates/import/import-spec.md) - 数据导入格式
-- [导出规范](./specs/excel-templates/export/export-spec.md) - 数据导出格式
-- [Web展示结构](./specs/excel-templates/web-display/) - 前端表格展示配置
+- [模板说明](./docs/excel-templates/template-guide.md) - Excel模板使用指南
+- [导入规范](./docs/excel-templates/import/import-spec.md) - 数据导入格式
+- [导出规范](./docs/excel-templates/export/export-spec.md) - 数据导出格式
+- [Web展示结构](./docs/excel-templates/web-display/) - 前端表格展示配置
 
 #### 业务规则 (rules/)
-- [薪资计算逻辑](./specs/rules/payroll-calculation.md) - 薪资计算核心算法
-- [薪资变量定义](./specs/rules/payroll-variables.md) - 薪资相关变量说明
+- [薪资计算逻辑](./docs/rules/payroll-calculation.md) - 薪资计算核心算法
+- [薪资变量定义](./docs/rules/payroll-variables.md) - 薪资相关变量说明
 
 ### 📊 项目统计
 
-- **总文档数**: 50 个文档文件
-- **docs/ 目录**: 4 个开发环境文档
-- **specs/ 核心**: 7 个核心规格文档
-- **specs/guides/**: 11 个辅助指南文档
-- **specs/ 其他**: 11 个专项子目录文档
+- **总文档数**: 43 个文档文件
+- **docs/ 目录**: 39 个项目文档（包含所有技术文档和指南）
+- **specs/ 核心**: 3 个Speckit核心文档（spec.md, plan.md, tasks.md）
 - **Speckit文档**: 15 个工作流和模板文件
+- **根目录**: 2 个文件（README.md, CLAUDE.md）
 
 ## 🎯 功能特性
 

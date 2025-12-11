@@ -340,11 +340,11 @@ bad-names=foo,bar,baz
 
 ## 📚 相关文档
 
-- [项目编码规范](./project-coding-standards.md) - 完整的命名规范说明
-- [Python编码规范](./python-coding-standards.md) - Python代码命名规则
-- [Excel格式规范](../specs/guides/excel-format-spec.md) - Excel字段定义
-- [数据模型设计](../specs/data-model.md) - 数据库结构设计
-- [API接口文档](../specs/contracts/api-endpoints.md) - API契约定义
+- [项目编码规范](./guides/project-coding-standards.md) - 完整的命名规范说明
+- [Python编码规范](./guides/python-coding-standards.md) - Python代码命名规则
+- [Excel格式规范](./guides/excel-format-spec.md) - Excel字段定义
+- [数据模型设计](./data-model.md) - 数据库结构设计
+- [API接口文档](./contracts/api-endpoints.md) - API契约定义
 
 ---
 
