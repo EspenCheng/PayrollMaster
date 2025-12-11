@@ -45,7 +45,7 @@ PayrollMaster/
 │   ├── checklists/         # 检查清单
 │   ├── excel-templates/    # Excel模板和说明
 │   ├── rules/              # 业务规则文档
-│   ├── data-model.md       # 数据模型设计
+│   ├── model.md            # 数据模型设计
 │   ├── research.md         # 技术研究报告
 │   └── quickstart.md       # 快速开始指南
 ├── specs/                  # Speckit核心工作流文档
@@ -86,7 +86,7 @@ PayrollMaster/
    - API文档: http://localhost:8000/docs
    - pgAdmin: http://localhost:5050
 
-详细安装说明请参考 [环境配置指南](./docs/environment-setup.md)
+详细安装说明请参考 [环境配置指南](./docs/setup.md)
 
 ## 📚 完整文档导航
 
@@ -94,10 +94,10 @@ PayrollMaster/
 
 | 文档 | 描述 | 链接 |
 |------|------|------|
-| 环境配置指南 | 环境要求、安装步骤、依赖管理 | [查看](./docs/environment-setup.md) |
-| Docker开发指南 | Docker开发环境配置、使用说明 | [查看](./docs/docker-development.md) |
-| 开发工作流 | 混合开发模式流程、规范说明 | [查看](./docs/development-workflow.md) |
-| 变量映射文档 | 薪资计算变量映射关系 | [查看](./docs/variable-mapping.md) |
+| 环境配置指南 | 环境要求、安装步骤、依赖管理 | [查看](./docs/setup.md) |
+| Docker开发指南 | Docker开发环境配置、使用说明 | [查看](./docs/docker.md) |
+| 开发工作流 | 混合开发模式流程、规范说明 | [查看](./docs/workflow.md) |
+| 变量映射文档 | 薪资计算变量映射关系 | [查看](./docs/mapping.md) |
 | references/ | 参考文档目录 | [查看](./docs/references/) |
 
 ### 📋 Speckit工作流文档
@@ -120,31 +120,31 @@ PayrollMaster/
 
 | 文档 | 描述 | 链接 |
 |------|------|------|
-| 数据模型设计 | 数据库结构、实体关系 | [查看](./docs/data-model.md) |
+| 数据模型设计 | 数据库结构、实体关系 | [查看](./docs/model.md) |
 | 技术研究报告 | 技术选型、调研结果 | [查看](./docs/research.md) |
 | 快速开始指南 | 快速上手指南 | [查看](./docs/quickstart.md) |
 
 ### 📂 专项文档
 
 #### 辅助指南 (guides/)
-- [Excel格式规范](./docs/guides/excel-format-spec.md) - Excel导入导出格式说明
+- [Excel格式规范](./docs/guides/excel-format.md) - Excel导入导出格式说明
 - [前端架构设计](./docs/guides/frontend-architecture.md) - 前端系统架构
-- [前端设计规范](./docs/guides/frontend-design-spec.md) - UI/UX设计标准
-- [项目编码规范](./docs/guides/project-coding-standards.md) - 通用编码标准
-- [Python编码规范](./docs/guides/python-coding-standards.md) - Python开发规范
-- [数据导出方案](./docs/guides/project-export-solution.md) - 数据导出解决方案
-- [技术栈分析](./docs/guides/tech-stack-analysis.md) - 技术选型分析
-- [技术栈总结](./docs/guides/tech-stack-summary.md) - 技术栈概览
+- [前端设计规范](./docs/guides/frontend-design.md) - UI/UX设计标准
+- [项目编码规范](./docs/guides/coding-standards.md) - 通用编码标准
+- [Python编码规范](./docs/guides/python-standards.md) - Python开发规范
+- [数据导出方案](./docs/guides/export-solution.md) - 数据导出解决方案
+- [技术栈分析](./docs/guides/tech-analysis.md) - 技术选型分析
+- [技术栈总结](./docs/guides/tech-summary.md) - 技术栈概览
 
 #### API契约 (contracts/)
-- [API端点规范](./docs/contracts/api-endpoints.md) - REST API接口定义
+- [API端点规范](./docs/contracts/api.md) - REST API接口定义
 
 #### 检查清单 (checklists/)
-- [需求检查清单](./docs/checklists/requirements-checklist.md) - 需求验证清单
-- [综合检查清单](./docs/checklists/comprehensive.md) - 综合质量检查
+- [需求检查清单](./docs/checklists/checklist.md) - 需求验证清单
+- [综合检查清单](./docs/checklists/quality-checklist.md) - 综合质量检查
 
 #### Excel模板 (excel-templates/)
-- [模板说明](./docs/excel-templates/template-guide.md) - Excel模板使用指南
+- [模板说明](./docs/excel-templates/templates.md) - Excel模板使用指南
 - [导入规范](./docs/excel-templates/import/import-spec.md) - 数据导入格式
 - [导出规范](./docs/excel-templates/export/export-spec.md) - 数据导出格式
 - [Web展示结构](./docs/excel-templates/web-display/) - 前端表格展示配置

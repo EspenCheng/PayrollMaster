@@ -8,7 +8,7 @@
 
 ```
 excel-templates/
-├── template-guide.md                     # 本文档，说明模板管理方式
+├── templates.md                     # 本文档，说明模板管理方式
 ├── import/                               # 数据导入模板目录
 │   ├── dataSubmissionReport.xlsx         # 数据提报模板（已提供）
 │   └── import-spec.md                    # 导入数据格式说明文档

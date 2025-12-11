@@ -15,20 +15,20 @@
 |------|------|------|------|
 | 项目规划 | `plan.md` | 8KB | 项目整体规划、技术栈、宪法检查 |
 | 功能规格 | `spec.md` | 12KB | 功能需求详细说明、用户故事 |
-| 技术栈更新总结 | `tech-stack-summary.md` | 6KB | Next.js技术栈更新记录 |
+| 技术栈更新总结 | `tech-summary.md` | 6KB | Next.js技术栈更新记录 |
 
 ### 2. 设计文档
 | 文档 | 路径 | 大小 | 描述 |
 |------|------|------|------|
-| 数据模型设计 | `data-model.md` | 15KB | 6个核心实体、字段映射、索引策略 |
-| 前端设计规范 | `frontend-design-spec.md` | 45KB | **完整前端设计系统**（配色、组件、页面） |
-| 技术栈分析 | `tech-stack-analysis.md` | 25KB | Next.js vs React对比、架构分析 |
+| 数据模型设计 | `model.md` | 15KB | 6个核心实体、字段映射、索引策略 |
+| 前端设计规范 | `frontend-design.md` | 45KB | **完整前端设计系统**（配色、组件、页面） |
+| 技术栈分析 | `tech-analysis.md` | 25KB | Next.js vs React对比、架构分析 |
 | 前端架构蓝图 | `frontend-architecture.md` | 20KB | 系统架构、页面结构、组件层级 |
 
 ### 3. API契约
 | 文档 | 路径 | 大小 | 描述 |
 |------|------|------|------|
-| API端点规范 | `contracts/api-endpoints.md` | 35KB | 50+个API端点、请求响应格式 |
+| API端点规范 | `contracts/api.md` | 35KB | 50+个API端点、请求响应格式 |
 | OpenAPI规范 | `contracts/openapi.yaml` | 12KB | OpenAPI 3.0标准契约 |
 
 ### 4. 操作指南
@@ -43,7 +43,7 @@
 ### Excel格式规范 ⭐
 | 文档 | 路径 | 大小 | 描述 |
 |------|------|------|------|
-| Excel格式规范 | `excel-format-spec.md` | 55KB | **双层表头格式详细说明、字段映射、验证规则** |
+| Excel格式规范 | `excel-format.md` | 55KB | **双层表头格式详细说明、字段映射、验证规则** |
 
 ---
 
@@ -91,18 +91,18 @@
 ## 📖 文档阅读建议
 
 ### 新手入门
-1. `tech-stack-summary.md` - 了解项目整体
+1. `tech-summary.md` - 了解项目整体
 2. `quickstart.md` - 学习部署和操作
-3. `frontend-design-spec.md` - 了解设计规范
+3. `frontend-design.md` - 了解设计规范
 
 ### 开发人员
-1. `data-model.md` - 理解数据模型
-2. `contracts/api-endpoints.md` - 熟悉API接口
-3. `excel-format-spec.md` - 掌握Excel处理
+1. `model.md` - 理解数据模型
+2. `contracts/api.md` - 熟悉API接口
+3. `excel-format.md` - 掌握Excel处理
 
 ### 架构师
 1. `plan.md` - 查看整体规划
-2. `tech-stack-analysis.md` - 了解技术选型
+2. `tech-analysis.md` - 了解技术选型
 3. `frontend-architecture.md` - 参考架构设计
 
 ---
@@ -132,9 +132,9 @@
 
 | 文档 | 路径 | 更新内容 |
 |------|------|----------|
-| Python编码规范 | `python-coding-standards.md` | **新增文档** - 完整的命名规范说明 |
-| 数据模型设计 | `data-model.md` | ✅ 所有模型字段名更新为camelCase |
-| Excel格式规范 | `excel-format-spec.md` | ✅ 所有示例代码更新为camelCase |
+| Python编码规范 | `python-standards.md` | **新增文档** - 完整的命名规范说明 |
+| 数据模型设计 | `model.md` | ✅ 所有模型字段名更新为camelCase |
+| Excel格式规范 | `excel-format.md` | ✅ 所有示例代码更新为camelCase |
 
 ### 主要变更
 
@@ -156,5 +156,5 @@
 ✅ **常量**仍使用UPPER_SNAKE_CASE（Python标准）
 ✅ **Excel字段名**保持原样（外部系统规定）
 
-详细说明请参考 `python-coding-standards.md` 文档。
+详细说明请参考 `python-standards.md` 文档。
 

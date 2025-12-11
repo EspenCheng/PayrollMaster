@@ -6,7 +6,7 @@ description: "PayrollMaster薪资自动核算系统 - 可执行任务清单"
 # Tasks: PayrollMaster薪资自动核算系统
 
 **输入**: 设计文档来自 `/specs/`
-**前置条件**: plan.md (已完成), spec.md (已完成), data-model.md (已完成), contracts/ (已完成)
+**前置条件**: plan.md (已完成), spec.md (已完成), model.md (已完成), contracts/ (已完成)
 
 **测试**: 包含pytest后端测试、Jest + React Testing Library前端测试
 **组织结构**: 任务按用户故事分组，每个故事可独立实现和测试

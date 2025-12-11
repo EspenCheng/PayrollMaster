@@ -34,7 +34,7 @@ specs/                          # Speckit核心工作流文档
 
 以下文档已迁移到 `docs/` 目录：
 
-- **技术文档**: `data-model.md`, `research.md`, `quickstart.md`
+- **技术文档**: `model.md`, `research.md`, `quickstart.md`
 - **项目指南**: `docs/guides/` (编码规范、架构设计等)
 - **API契约**: `docs/contracts/`
 - **检查清单**: `docs/checklists/`

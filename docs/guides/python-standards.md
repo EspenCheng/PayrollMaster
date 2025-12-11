@@ -35,7 +35,7 @@ def parseEmployeeExcel():
 
 ## ✅ 已更新文档
 
-### 1. 数据模型设计 (`data-model.md`)
+### 1. 数据模型设计 (`model.md`)
 - ✅ Employee模型：所有字段名使用camelCase
 - ✅ PayrollRule模型：所有字段名使用camelCase
 - ✅ SalaryCalculation模型：所有字段名使用camelCase
@@ -45,7 +45,7 @@ def parseEmployeeExcel():
 - ✅ 字段映射表：EMPLOYEE_FIELD_MAPPING更新
 - ✅ Excel解析示例：函数名和变量名更新
 
-### 2. Excel格式规范 (`excel-format-spec.md`)
+### 2. Excel格式规范 (`excel-format.md`)
 - ✅ ExcelParser类：方法名更新
 - ✅ EmployeeValidator类：变量名更新
 - ✅ 字段映射表：数据库字段名更新
@@ -235,8 +235,8 @@ class employeeService:  # 类名应使用PascalCase
 
 | 文档 | 路径 | 说明 |
 |------|------|------|
-| 数据模型设计 | `data-model.md` | 所有模型字段已更新 |
-| Excel格式规范 | `excel-format-spec.md` | 所有示例代码已更新 |
+| 数据模型设计 | `model.md` | 所有模型字段已更新 |
+| Excel格式规范 | `excel-format.md` | 所有示例代码已更新 |
 
 ---
 

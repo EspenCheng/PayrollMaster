@@ -2,7 +2,7 @@
 
 **创建日期**: 2025-12-10
 **用途**: 评估薪资自动核算系统需求文档的质量（完整性、清晰度、一致性、可测量性、覆盖率）
-**范围**: 基于spec.md、plan.md、tasks.md、data-model.md、api-endpoints.md、payroll-calculation.md、payroll-variables.md、quickstart.md、frontend-design-spec.md等核心文档
+**范围**: 基于spec.md、plan.md、tasks.md、model.md、api.md、payroll-calculation.md、payroll-variables.md、quickstart.md、frontend-design.md等核心文档
 **检查对象**: 需求规格说明书及其相关技术文档
 
 ---

@@ -62,7 +62,7 @@
 
 根据薪资核算系统宪章，以下检查项必须通过：
 
-- [x] **文档驱动开发**：功能需求已在spec.md中明确记录，设计方案将在data-model.md中记录
+- [x] **文档驱动开发**：功能需求已在spec.md中明确记录，设计方案将在model.md中记录
 - [x] **统一命名规范**：所有变量、函数、类名使用驼峰命名法（camelCase）
 - [x] **测试驱动开发**：计划为所有计算逻辑编写单元测试（覆盖率≥90%），使用pytest和Jest
 - [x] **模块化架构**：按薪资计算、考勤管理、税务计算、员工信息、Excel处理、权限管理等模块划分
@@ -75,7 +75,7 @@
 
 **Phase 1后重新评估**：
 
-- [x] **文档驱动开发**：已完成data-model.md（数据模型）、contracts/api-endpoints.md（API规范）、openapi.yaml（OpenAPI规范）、quickstart.md（快速入门）
+- [x] **文档驱动开发**：已完成model.md（数据模型）、contracts/api.md（API规范）、openapi.yaml（OpenAPI规范）、quickstart.md（快速入门）
 - [x] **统一命名规范**：所有数据模型和API端点使用驼峰命名法（camelCase），遵循RESTful API最佳实践
 - [x] **测试驱动开发**：计划使用pytest为所有计算逻辑编写单元测试，覆盖率≥90%，包括薪资计算、Excel处理、数据验证等核心模块
 - [x] **模块化架构**：
@@ -97,7 +97,7 @@
 specs/[###-feature]/
 ├── plan.md                        # This file (/speckit.plan command output)
 ├── research.md                    # Phase 0 output (/speckit.plan command)
-├── data-model.md                  # Phase 1 output (/speckit.plan command)
+├── model.md                  # Phase 1 output (/speckit.plan command)
 ├── quickstart.md                  # Phase 1 output (/speckit.plan command)
 ├── contracts/                     # Phase 1 output (/speckit.plan command)
 └── tasks.md                       # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
@@ -198,8 +198,8 @@ PayrollMaster/
 ### ✅ Phase 1: 设计阶段完成
 - **已完成**：数据模型设计、API契约生成、快速入门指南
 - **输出文件**：
-  - `data-model.md` - 完整的数据模型设计（6个核心实体）
-  - `contracts/api-endpoints.md` - 详细的API端点规范（9个功能模块）
+  - `model.md` - 完整的数据模型设计（6个核心实体）
+  - `contracts/api.md` - 详细的API端点规范（9个功能模块）
   - `contracts/openapi.yaml` - OpenAPI 3.0标准规范
   - `quickstart.md` - 快速入门指南
 - **Agent Context已更新**：`.claude/CLAUDE.md`
@@ -230,8 +230,8 @@ PayrollMaster/
 4. 金融仪表板设计风格更专业，提升用户信任感
 
 **相关文档**：
-- `guides/frontend-design-spec.md` - 完整的前端设计规范
-- `guides/tech-stack-analysis.md` - 技术栈对比分析
+- `guides/frontend-design.md` - 完整的前端设计规范
+- `guides/tech-analysis.md` - 技术栈对比分析
 - `guides/frontend-architecture.md` - 前端架构蓝图
 
 **更新内容**：

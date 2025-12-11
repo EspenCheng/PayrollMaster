@@ -8,7 +8,7 @@
 |--------|------|------|
 | `spec.md` | 功能规格说明书 | 用户故事、功能需求、验收标准 |
 | `plan.md` | 实施计划 | 技术方案、架构设计、项目结构 |
-| `data-model.md` | 数据模型设计 | 实体关系、字段定义、约束规则 |
+| `model.md` | 数据模型设计 | 实体关系、字段定义、约束规则 |
 | `tasks.md` | 任务清单 | 可执行任务、优先级、依赖关系 |
 | `quickstart.md` | 快速开始指南 | 环境搭建、快速上手、操作流程 |
 | `research.md` | 技术研究报告 | 技术选型、最佳实践、研究成果 |
@@ -18,8 +18,8 @@
 | 文件名 | 用途 | 描述 |
 |--------|------|------|
 | `project-research.md` | 项目技术研究 | 综合技术报告、架构分析、性能优化 |
-| `project-export-solution.md` | 数据导出方案 | 数据导出功能技术实现方案 |
-| `project-coding-standards.md` | 编码规范 | 命名规范、代码风格、编写标准 |
+| `export-solution.md` | 数据导出方案 | 数据导出功能技术实现方案 |
+| `coding-standards.md` | 编码规范 | 命名规范、代码风格、编写标准 |
 
 ### 🔧 辅助文档（中文命名）
 
@@ -47,8 +47,8 @@
 
 ### 开发人员
 1. 新人上手：`quickstart.md`
-2. 编码规范：`project-coding-standards.md`
-3. 数据模型：`data-model.md`
+2. 编码规范：`coding-standards.md`
+3. 数据模型：`model.md`
 4. 任务清单：`tasks.md`
 
 ### 技术负责人
@@ -59,12 +59,12 @@
 
 ### 产品经理
 1. 功能需求：`spec.md`
-2. 数据导出：`project-export-solution.md`
+2. 数据导出：`export-solution.md`
 3. Excel规范：`11-Excel格式规范.md`
 
 ### 架构师
 1. 整体架构：`plan.md`
-2. 数据模型：`data-model.md`
+2. 数据模型：`model.md`
 3. 技术研究：`research.md`
 4. API契约：`contracts/`
 
@@ -79,18 +79,18 @@
 ## 🔗 文档关系
 
 ```
-project-index.md (本文档)
+index.md (本文档)
 ├── 核心文档
 │   ├── spec.md → 定义功能需求
 │   ├── plan.md → 定义技术方案
-│   ├── data-model.md → 定义数据结构
+│   ├── model.md → 定义数据结构
 │   ├── tasks.md → 定义实现任务
 │   ├── quickstart.md → 定义使用流程
 │   └── research.md → 定义研究成果
 ├── 项目文档
 │   ├── project-research.md → 项目技术研究
-│   ├── project-export-solution.md → 数据导出方案
-│   └── project-coding-standards.md → 编码规范
+│   ├── export-solution.md → 数据导出方案
+│   └── coding-standards.md → 编码规范
 └── 辅助文档
     ├── 05-Python编码规范.md → Python特定规范
     ├── 11-Excel格式规范.md → Excel处理规范
@@ -115,7 +115,7 @@ project-index.md (本文档)
 
 ### 更新文档
 1. 修改对应文档文件
-2. 更新本文档索引 (project-index.md) 如有必要
+2. 更新本文档索引 (index.md) 如有必要
 3. 通知相关团队成员
 
 ### 删除文档
