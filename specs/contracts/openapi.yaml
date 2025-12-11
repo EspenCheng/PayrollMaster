@@ -1,0 +1,795 @@
+openapi: 3.0.3
+info:
+  title: PayrollMaster薪资自动核算系统API
+  description: |
+    PayrollMaster是一个完整的薪资自动核算Web应用程序，支持Excel数据导入、薪资计算规则配置、自动薪资计算、结果预览和报表导出等功能。
+  version: 1.0.0
+  contact:
+    name: PayrollMaster开发团队
+    email: dev@payrollmaster.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:8000/api/v1
+    description: 开发环境
+  - url: https://api.payrollmaster.com/v1
+    description: 生产环境
+
+security:
+  - BearerAuth: []
+
+paths:
+  /auth/login:
+    post:
+      tags:
+        - 认证
+      summary: 用户登录
+      description: 用户使用用户名和密码登录系统，获取JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                  description: 用户名
+                  example: admin
+                password:
+                  type: string
+                  format: password
+                  description: 密码
+                  example: password123
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      access_token:
+                        type: string
+                        description: JWT访问令牌
+                      token_type:
+                        type: string
+                        example: bearer
+                      expires_in:
+                        type: integer
+                        description: 过期时间（秒）
+                        example: 3600
+                      user:
+                        $ref: '#/components/schemas/User'
+        '401':
+          description: 用户名或密码错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /auth/me:
+    get:
+      tags:
+        - 认证
+      summary: 获取当前用户信息
+      description: 获取当前登录用户的详细信息
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/User'
+        '401':
+          description: 未认证
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /employees:
+    get:
+      tags:
+        - 员工管理
+      summary: 获取员工列表
+      description: 分页获取员工列表，支持部门筛选和关键词搜索
+      parameters:
+        - name: page
+          in: query
+          description: 页码
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: size
+          in: query
+          description: 每页数量
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: department
+          in: query
+          description: 部门筛选
+          schema:
+            type: string
+        - name: search
+          in: query
+          description: 搜索关键词（姓名或工号）
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Employee'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+
+    post:
+      tags:
+        - 员工管理
+      summary: 创建员工
+      description: 创建新的员工记录
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeCreate'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/Employee'
+        '422':
+          description: 数据验证失败
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /employees/{employee_id}:
+    get:
+      tags:
+        - 员工管理
+      summary: 获取员工详情
+      parameters:
+        - name: employee_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: 员工工号
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/EmployeeDetail'
+        '404':
+          description: 员工不存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      tags:
+        - 员工管理
+      summary: 更新员工信息
+      parameters:
+        - name: employee_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeUpdate'
+      responses:
+        '200':
+          description: 更新成功
+        '404':
+          description: 员工不存在
+
+    delete:
+      tags:
+        - 员工管理
+      summary: 删除员工
+      parameters:
+        - name: employee_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 删除成功
+        '404':
+          description: 员工不存在
+        '409':
+          description: 有关联数据，无法删除
+
+  /import/excel:
+    post:
+      tags:
+        - 数据导入
+      summary: 上传Excel文件
+      description: 上传Excel文件并验证数据格式
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+                - type
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Excel文件（.xlsx或.xls）
+                type:
+                  type: string
+                  enum: [employee, attendance]
+                  description: 导入类型
+      responses:
+        '200':
+          description: 上传成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/ImportResult'
+        '400':
+          description: 文件格式错误
+        '422':
+          description: 数据验证失败
+
+  /payroll/rules:
+    get:
+      tags:
+        - 薪资规则
+      summary: 获取规则列表
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PayrollRule'
+
+    post:
+      tags:
+        - 薪资规则
+      summary: 创建规则
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayrollRuleCreate'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/PayrollRule'
+
+  /payroll/calculate:
+    post:
+      tags:
+        - 薪资计算
+      summary: 执行薪资计算
+      description: 根据配置的规则对指定员工进行薪资计算
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - calculation_date
+              properties:
+                calculation_date:
+                  type: string
+                  format: date
+                  description: 计算日期
+                  example: 2025-12-31
+                department:
+                  type: string
+                  description: 部门筛选（可选）
+                rules:
+                  type: array
+                  items:
+                    type: integer
+                  description: 使用的规则ID列表
+                dry_run:
+                  type: boolean
+                  description: 是否仅预览不保存
+                  default: false
+      responses:
+        '200':
+          description: 计算完成
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/CalculationResult'
+
+  /payroll/calculations:
+    get:
+      tags:
+        - 薪资计算
+      summary: 获取计算结果列表
+      parameters:
+        - name: calculation_date
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: department
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: size
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/SalaryCalculationSummary'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+
+  /reports/payroll/export:
+    get:
+      tags:
+        - 报表导出
+      summary: 导出薪资报表
+      description: 导出指定周期的薪资计算结果为Excel文件
+      parameters:
+        - name: calculation_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: department
+          in: query
+          schema:
+            type: string
+        - name: format
+          in: query
+          schema:
+            type: string
+            enum: [xlsx, csv]
+            default: xlsx
+      responses:
+        '200':
+          description: 文件下载
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+            text/csv:
+              schema:
+                type: string
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 用户ID
+        username:
+          type: string
+          description: 用户名
+        email:
+          type: string
+          format: email
+          description: 邮箱
+        full_name:
+          type: string
+          description: 姓名
+        role:
+          type: string
+          enum: [admin, manager, accountant, employee]
+          description: 角色
+        last_login:
+          type: string
+          format: date-time
+          description: 最后登录时间
+
+    Employee:
+      type: object
+      properties:
+        id:
+          type: integer
+        employee_id:
+          type: string
+          description: 员工工号
+        name:
+          type: string
+          description: 员工姓名
+        department:
+          type: string
+          description: 部门
+        position:
+          type: string
+          description: 职位
+        hire_date:
+          type: string
+          format: date
+          description: 入职日期
+
+    EmployeeDetail:
+      allOf:
+        - $ref: '#/components/schemas/Employee'
+        - type: object
+          properties:
+            bank_account:
+              type: string
+              description: 银行账号
+            phone:
+              type: string
+              description: 联系电话
+            email:
+              type: string
+              format: email
+              description: 邮箱
+            attendance_days:
+              type: integer
+              description: 出勤天数
+            sick_leave_days:
+              type: integer
+              description: 病假天数
+            personal_leave_days:
+              type: integer
+              description: 事假天数
+
+    EmployeeCreate:
+      type: object
+      required:
+        - employee_id
+        - name
+        - department
+        - position
+        - hire_date
+      properties:
+        employee_id:
+          type: string
+        name:
+          type: string
+        department:
+          type: string
+        position:
+          type: string
+        hire_date:
+          type: string
+          format: date
+        bank_account:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
+
+    EmployeeUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        department:
+          type: string
+        position:
+          type: string
+        bank_account:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
+
+    PayrollRule:
+      type: object
+      properties:
+        id:
+          type: integer
+        rule_name:
+          type: string
+          description: 规则名称
+        rule_type:
+          type: string
+          enum: [bonus, deduction, overtime, tax, insurance]
+          description: 规则类型
+        calculation_type:
+          type: string
+          enum: [fixed, percentage, formula]
+          description: 计算类型
+        value:
+          type: number
+          format: float
+          description: 固定金额或百分比值
+        formula:
+          type: string
+          description: 自定义计算公式
+        description:
+          type: string
+          description: 规则描述
+        is_active:
+          type: boolean
+          description: 是否启用
+
+    PayrollRuleCreate:
+      type: object
+      required:
+        - rule_name
+        - rule_type
+        - calculation_type
+      properties:
+        rule_name:
+          type: string
+        rule_type:
+          type: string
+          enum: [bonus, deduction, overtime, tax, insurance]
+        calculation_type:
+          type: string
+          enum: [fixed, percentage, formula]
+        value:
+          type: number
+          format: float
+        formula:
+          type: string
+        description:
+          type: string
+        is_active:
+          type: boolean
+          default: true
+
+    CalculationResult:
+      type: object
+      properties:
+        calculation_id:
+          type: string
+          format: uuid
+          description: 计算任务ID
+        calculation_date:
+          type: string
+          format: date
+          description: 计算日期
+        employee_count:
+          type: integer
+          description: 员工数量
+        total_gross_pay:
+          type: number
+          format: float
+          description: 合计应发工资
+        total_net_pay:
+          type: number
+          format: float
+          description: 合计实发工资
+        status:
+          type: string
+          enum: [pending, running, completed, failed]
+          description: 状态
+        duration_seconds:
+          type: number
+          format: float
+          description: 计算耗时（秒）
+
+    SalaryCalculationSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 计算记录ID
+        employee_id:
+          type: string
+          description: 员工工号
+        employee_name:
+          type: string
+          description: 员工姓名
+        department:
+          type: string
+          description: 部门
+        gross_pay:
+          type: number
+          format: float
+          description: 应发工资
+        total_deductions:
+          type: number
+          format: float
+          description: 扣除合计
+        net_pay:
+          type: number
+          format: float
+          description: 实发工资
+        status:
+          type: string
+          enum: [draft, confirmed, paid]
+          description: 状态
+
+    ImportResult:
+      type: object
+      properties:
+        upload_id:
+          type: string
+          format: uuid
+          description: 上传ID
+        file_name:
+          type: string
+          description: 文件名
+        total_rows:
+          type: integer
+          description: 总行数
+        valid_rows:
+          type: integer
+          description: 有效行数
+        invalid_rows:
+          type: integer
+          description: 无效行数
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              row:
+                type: integer
+                description: 行号
+              field:
+                type: string
+                description: 字段名
+              message:
+                type: string
+                description: 错误信息
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: 当前页码
+        size:
+          type: integer
+          description: 每页数量
+        total:
+          type: integer
+          description: 总记录数
+        pages:
+          type: integer
+          description: 总页数
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: 错误代码
+            message:
+              type: string
+              description: 错误信息
+            details:
+              type: object
+              description: 错误详情
+        timestamp:
+          type: string
+          format: date-time

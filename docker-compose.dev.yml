@@ -1,0 +1,123 @@
+version: '3.8'
+
+services:
+  # PostgreSQL 数据库
+  postgres:
+    image: postgres:16-alpine
+    container_name: payroll-postgres-dev
+    environment:
+      POSTGRES_DB: payrollmaster
+      POSTGRES_USER: payroll
+      POSTGRES_PASSWORD: payroll123
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U payroll -d payrollmaster"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - payroll-network
+
+  # Redis 缓存
+  redis:
+    image: redis:7-alpine
+    container_name: payroll-redis-dev
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_dev_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - payroll-network
+
+  # pgAdmin (可选，用于可视化数据库管理)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: payroll-pgadmin-dev
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@payroll.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_dev_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    networks:
+      - payroll-network
+
+  # 后端 API (开发模式 - 带热重载)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: payroll-backend-dev
+    environment:
+      DATABASE_URL: postgresql://payroll:payroll123@postgres:5432/payrollmaster
+      REDIS_URL: redis://redis:6379/0
+      JWT_SECRET_KEY: dev-secret-key-change-in-production
+      ENVIRONMENT: development
+      DEBUG: "true"
+    ports:
+      - "8000:8000"
+    volumes:
+      # 挂载源代码，实现热重载
+      - ./backend:/app
+      - /app/node_modules
+      - /app/__pycache__
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - payroll-network
+    command: >
+      sh -c "
+        echo 'Waiting for PostgreSQL...' &&
+        sleep 5 &&
+        uvicorn main:app --reload --host 0.0.0.0 --port 8000 --log-level info
+      "
+    restart: unless-stopped
+
+  # 前端 (开发模式 - 带热重载)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: payroll-frontend-dev
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    volumes:
+      # 挂载源代码，实现热重载
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - backend
+    networks:
+      - payroll-network
+    command: npm run dev
+    restart: unless-stopped
+
+volumes:
+  postgres_dev_data:
+  redis_dev_data:
+  pgadmin_dev_data:
+
+networks:
+  payroll-network:
+    driver: bridge

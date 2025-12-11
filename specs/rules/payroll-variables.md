@@ -1,0 +1,304 @@
+# PayrollMaster 薪资管理系统 - 变量定义文档
+
+**创建日期**: 2025-11-16
+**状态**: 已完善
+**说明**: 此文档记录薪资管理系统中涉及的各类变量和参数，包含中文名称、英文变量名和Excel字段映射
+
+## 字段映射关系说明
+
+### 映射格式
+- **中文名称**: Excel表格中显示的字段名称
+- **英文变量名**: 程序内部使用的标准变量名
+- **Excel字段名**: Excel文件实际的列标题（用于数据导入）
+- **数据类型**: 字段的数据类型
+- **必填项**: 是否为必填字段
+- **验证规则**: 数据验证要求
+
+## 常量定义
+| 常量中文名称 | 英文变量名 | 数据类型 | 数值 |
+|-------------|-----------|---------|------|
+| 基础制度日工数 | `BASEWORKDAYS` | 浮点数 | 21.75 |
+| 前夜班津贴标准 | `EARLYNIGHTSUBSIDY` | 正整数 | 18 |
+| 后夜班津贴标准 | `LATENIGHTSUBSIDY` | 正整数 | 20 |
+
+
+## 员工基础信息变量
+
+### 个人信息
+
+| 中文名称 | 英文变量名 | Excel字段名 | 数据类型 | 必填 | 验证规则 | 备注 |
+|----------|------------|-------------|----------|------|----------|------|
+| 员工编码 | `employeeId` | mdnb_employee.number | 字符串 | ✅ | 非空且唯一 | 格式：RYJM-0000137269（前15位） |
+| 员工姓名 | `employeeName` | mdnb_employee.name | 字符串 | ✅ | 非空 | - |
+| 身份证号 | `idCardNumber` | mdnb_idcard1 | 字符串 | ✅ | 身份证格式 | 数字字符串 |
+| 原系统员工ID | `originalEmployeeId` | mdnb_sourceuserid | 字符串 | ✅ | - | 数字字符串 |
+| 部门编码 | `departmentId` | mdnb_department.number | 字符串 | ✅ | 非空 | - |
+| 部门名称 | `departmentName` | mdnb_department.name | 字符串 | ✅ | - | - |
+| 部门类别 | `departmentType` | department_classification | 字符串 | ✅ | - | - |
+| 部门二级类别 | `departmentSubType` | sub_department | 字符串 | ✅ | - | - |
+| 岗位工种 | `employeeJob` | mdnb_employee.job | 字符串 | ✅ | - | - |
+| 岗位类别 | `jobType` | mdnb_employee.job_type | 字符串 | ✅ | - | - |
+| 职务类别 | `jobPosition` | mdnb_employee.post | 字符串 | ✅ | - | - |
+| 集团工龄 | `groupWorkYears` | mdnb_employee.seniority | 正整数 | ✅ | ≥0 | - |
+| 入井年限 | `undergroundWorkYears` | mdnb_employee.undergroundWorkYears | 正整数 | ✅ | ≥0 | - |
+
+## 薪资构成变量
+
+### 薪资标准
+
+| 中文名称 | 英文变量名 | Excel字段名 | 数据类型 | 必填 | 验证规则 | 备注 |
+|----------|------------|-------------|----------|------|----------|------|
+| 工资薪制 | `salarySystem` | mdnb_textfield1 | 字符串 | ✅ | '日薪'或'月薪' | 只能是日薪或月薪之一 |
+| 岗位工资基值 | `positionSalaryBase` | mdnb_amountfield2 | 正整数 | ✅ | - | 默认700 |
+| 岗位系数 | `positionCoefficient` | mdnb_decimalfield1 | 浮点数 | ✅ | 1.0-6.0 | 默认为1 |
+| 专业技术人员岗位调节系数 | `techPositionAdjustCoefficient` | mdnb_decimalfield2 | 数值 | ✅ | 1.0或1.1或1.2 | 默认1.0 |
+| 井下职业健康岗位工资系数 | `undergroundHealthCoefficient` | mdnb_decimalfield3 | 数值 | ✅ | 1.0或1.2或1.4或1.6或1.8 | 默认1.0 |
+| 年功工资标准 | `senioritySalaryStandard` | mdnb_textfield2 | 字符串 | ✅ | '新标准'或'旧标准' | 只能是新标准或旧标准之一 |
+| 井下折算调整工龄 | `undergroundAdjustedYears` | mdnb_decimalfield4 | 正整数 | ❌ | ≥0 | 默认0 |
+| 值班津贴标准 | `dutyAllowanceStandard` | mdnb_amountfield3 | 正整数 | ❌ | ≥0 | 默认0 |
+| 入井津贴标准 | `undergroundAllowanceStandard` | mdnb_amountfield58 | 正整数 | ❌ | 0或45或60 | 默认0 |
+| 保留工资 | `retainedSalary` | mdnb_amountfield1 | 正整数 | ❌ | ≥0 | 默认0 |
+| 补差工资 | `supplementSalary` | mdnb_amountfield64 | 正整数 | ❌ | ≥0 | 默认0 | 
+
+### 月度考勤
+
+| 中文名称 | 英文变量名 | Excel字段名 | 数据类型 | 必填 | 验证规则 | 备注 |
+|----------|------------|-------------|----------|------|----------|------|
+| 制度工日工数 | `systemWorkDays` | mdnb_decimalfield5 | 正整数 | ❌ | 0-25 | 默认0 |
+| 公出工数 | `businessTripDays` | mdnb_decimalfield22 | 正整数 | ❌ | 0-25 | 默认0 |
+| 学习工数 | `trainingDays` | mdnb_decimalfield19 | 正整数 | ❌ | 0-25 | 默认0 |
+| 带薪年休假 | `paidAnnualLeave` | mdnb_decimalfield8 | 正整数 | ❌ | 0-15 | 默认0 |
+| 婚假 | `marriageLeave` | mdnb_decimalfield9 | 正整数 | ❌ | 0-25 | 默认0 |
+| 探亲假 | `familyVisitLeave` | mdnb_decimalfield14 | 正整数 | ❌ | 0-25 | 默认0 |
+| 有资产假 | `propertyLeave` | mdnb_decimalfield10 | 正整数 | ❌ | 0-25 | 默认0 |
+| 哺乳假 | `nursingLeave` | mdnb_decimalfield17 | 正整数 | ❌ | 0-25 | 默认0 |
+| 丧假 | `bereavementLeave` | mdnb_decimalfield13 | 正整数 | ❌ | 0-25 | 默认0 |
+| 病假 | `sickLeave` | mdnb_decimalfield12 | 正整数 | ❌ | 0-25 | 默认0 |
+| 其他有资假 | `otherPaidLeave` | mdnb_decimalfield20 | 正整数 | ❌ | 0-25 | 默认0 |
+| 其他有资假工资 | `otherPaidLeaveSalary` | mdnb_amountfield4 | 正整数 | ❌ | ≥0 | 默认0 |
+| 有资假备注 | `paidLeaveRemarks` | mdnb_textfield5 | 字符串 | ❌ | - | - |
+| 事假 | `personalLeave` | mdnb_decimalfield18 | 正整数 | ❌ | 0-25 | 默认0 |
+| 旷工 | `absence` | mdnb_decimalfield21 | 正整数 | ❌ | 0-25 | 默认0 |
+| 下井工数 | `undergroundDays` | mdnb_decimalfield26 | 正整数 | ❌ | 0-31 | 默认0 |
+| 前夜班工数 | `nightShiftDays` | mdnb_decimalfield27 | 正整数 | ❌ | 0-31 | 默认0 |
+| 后夜班工数 | `lateNightShiftDays` | mdnb_decimalfield24 | 正整数 | ❌ | 0-31 | 默认0 |
+| 地面生产夜班工数 | `groundProductionNightDays` | mdnb_decimalfield28 | 正整数 | ❌ | 0-31 | 默认0 |
+| 地面非生产夜班工数 | `groundNonProductionNightDays` | mdnb_decimalfield25 | 正整数 | ❌ | 0-31 | 默认0 |
+| 值班天数 | `onDutyDays` | mdnb_decimalfield29 | 正整数 | ❌ | 0-31 | 默认0 |
+| 公休日出勤工数 | `weekendWorkDays` | mdnb_decimalfield7 | 正整数 | ❌ | 0-4 | 默认0 |
+| 节假日出勤工数 | `holidayWorkDays` | mdnb_decimalfield11 | 正整数 | ❌ | 0-5 | 默认0 |
+
+### 月度绩效
+
+| 中文名称 | 英文变量名 | Excel字段名 | 数据类型 | 必填 | 验证规则 | 备注 |
+|----------|------------|-------------|----------|------|----------|------|
+| 绩效分配金额 | `performanceAllocation` | mdnb_amountfield25 | 正整数 | ❌ | ≥0 | 默认0 |
+| 绩效补发金额 | `performanceSupplement` | mdnb_amountfield26 | 正整数 | ❌ | ≥0 | 默认0 |
+| 考核奖扣工资 | `assessmentDeduction` | mdnb_amountfield27 | 数值 | ❌ | - | 可正可负,默认0 |
+
+### 月度考核                                                                                       
+
+| 中文名称 | 英文变量名 | Excel字段名 | 数据类型 | 必填 | 验证规则 | 备注 |
+|----------|------------|-------------|----------|------|----------|------|
+| 安全结构工资系数 | `safetyStructureCoefficient` | mdnb_decimalfield31 | 正整数 | ❌ | 0-100 | 默认100 |
+| 年功工资考核打分 | `seniorityAssessmentScore` | mdnb_decimalfield32 | 正整数 | ❌ | 0-100 | 默认100 |
+| 井下职业健康岗位工资考核打分 | `undergroundHealthAssessmentScore` | mdnb_decimalfield33 | 正整数 | ❌ | 0-100 | 默认100 |
+
+### 月度辅助
+
+| 中文名称 | 英文变量名 | Excel字段名 | 数据类型 | 必填 | 验证规则 | 备注 |
+|----------|------------|-------------|----------|------|----------|------|
+| 高温高空津贴 | `highAltitudeAllowance` | mdnb_amountfield30 | 正整数 | ❌ | ≥0 | 默认0 |
+| 野外施工津贴 | `fieldWorkAllowance` | mdnb_amountfield31 | 正整数 | ❌ | ≥0 | 默认0 |
+| 有毒有害津贴 | `hazardousAllowance` | mdnb_amountfield32 | 正整数 | ❌ | ≥0 | 默认0 |
+| 电焊津贴 | `weldingAllowance` | mdnb_amountfield33 | 正整数 | ❌ | ≥0 | 默认0 |
+| 回族伙食津贴 | `halalFoodAllowance` | mdnb_amountfield34 | 正整数 | ❌ | ≥0 | 默认0 |
+| 交通补助 | `transportAllowance` | mdnb_amountfield35 | 正整数 | ❌ | ≥0 | 默认0 |
+| 通讯补助 | `communicationAllowance` | mdnb_amountfield36 | 正整数 | ❌ | ≥0 | 默认0 |
+| 其他津补贴 | `otherAllowances` | mdnb_amountfield38 | 正整数 | ❌ | ≥0 | 默认0 |
+
+### 计件工资
+
+| 中文名称 | 英文变量名 | Excel字段名 | 数据类型 | 必填 | 验证规则 | 备注 |
+|----------|------------|-------------|----------|------|----------|------|
+| 工分 | `workPoints` | mdnb_decimalfield200 | 正整数 | ❌ | ≥0 | 默认0 |
+| 单价 | `unitPrice` | mdnb_decimalfield300 | 浮点数 | ❌ | ≥0 | 保留五位小数,默认0 |
+| 计件工资 | `pieceworkSalary` | mdnb_amountfield300 | 浮点数 | ❌ | ≥0 | 保留两位小数,默认0 |
+
+### 奖励
+
+| 中文名称 | 英文变量名 | Excel字段名 | 数据类型 | 必填 | 验证规则 | 备注 |
+|----------|------------|-------------|----------|------|----------|------|
+| 奋斗者专项激励 | `striverSpecialIncentive` | mdnb_amountfield40 | 正整数 | ❌ | ≥0 | 默认0 |
+| 贡献收入 | `contributionIncome` | mdnb_amountfield41 | 正整数 | ❌ | ≥0 | 默认0 |
+
+### 扣罚工资
+
+| 中文名称 | 英文变量名 | Excel字段名 | 数据类型 | 必填 | 验证规则 | 备注 |
+|----------|------------|-------------|----------|------|----------|------|
+| 扣罚工资（补扣工资） | `penaltyDeduction` | mdnb_amountfield39 | 数值 | ❌ | - | 可正可负,默认0 |
+| 扣罚工资备注 | `penaltyDeductionRemarks` | mdnb_textfield6 | 字符串 | ❌ | - | - |
+
+## 扣款项变量
+
+### 社保数据
+
+| 中文名称 | 英文变量名 | Excel字段名 | 数据类型 | 必填 | 验证规则 | 备注 |
+|----------|------------|-------------|----------|------|----------|------|
+| 养老保险（个人） | `pensionInsurancePersonal` | mdnb_amountfield42 | 浮点数 | ❌ | ≥0 | 保留两位小数 |
+| 医疗保险（个人） | `medicalInsurancePersonal` | mdnb_amountfield43 | 浮点数 | ❌ | ≥0 | 保留两位小数 |
+| 失业保险（个人） | `unemploymentInsurancePersonal` | mdnb_amountfield44 | 浮点数 | ❌ | ≥0 | 保留两位小数 |
+| 住房公积金（个人） | `housingFundPersonal` | mdnb_amountfield45 | 正整数 | ❌ | ≥0 | 默认0 |
+| 企业年金（个人） | `annuityPersonal` | mdnb_amountfield46 | 正整数 | ❌ | ≥0 | 默认0 |
+| 互助金（个人） | `mutualAidPersonal` | mdnb_amountfield47 | 正整数 | ❌ | ≥0 | 默认0 |
+| 养老保险（企业） | `pensionInsuranceCompany` | mdnb_amountfield48 | 浮点数 | ❌ | ≥0 | 保留两位小数 |
+| 医疗保险（企业） | `medicalInsuranceCompany` | mdnb_amountfield49 | 浮点数 | ❌ | ≥0 | 保留两位小数 |
+| 失业保险（企业） | `unemploymentInsuranceCompany` | mdnb_amountfield51 | 浮点数 | ❌ | ≥0 | 保留两位小数 |
+| 住房公积金（企业） | `housingFundCompany` | mdnb_amountfield53 | 正整数 | ❌ | ≥0 | 默认0 |
+| 企业年金（企业） | `annuityCompany` | mdnb_amountfield54 | 正整数 | ❌ | ≥0 | 默认0 |
+
+### 月度个税
+
+| 中文名称 | 英文变量名 | Excel字段名 | 数据类型 | 必填 | 验证规则 | 备注 |
+|----------|------------|-------------|----------|------|----------|------|
+| 个人所得税 | `personalIncomeTax` | mdnb_amountfield5 | 浮点数 | ❌ | ≥0 | 保留两位小数 |
+
+### 月度税后
+
+| 中文名称 | 英文变量名 | Excel字段名 | 数据类型 | 必填 | 验证规则 | 备注 |
+|----------|------------|-------------|----------|------|----------|------|
+| 独生子女费 | `oneChildAllowance` | mdnb_amountfield19 | 正整数 | ❌ | ≥0 | - |
+| 女工卫生费 | `femaleHygieneAllowance` | mdnb_amountfield22 | 正整数 | ❌ | ≥0 | - |
+
+## 核算数据变量
+
+### 基础核算项目（系统计算字段）
+
+| 中文名称 | 英文变量名 | 数据类型 | 备注 |
+|----------|------------|----------|------------|
+| 日资 | `dailySalary` | 浮点数 | 保留两位小数 |
+| 出勤工数 | `attendanceDays` | 正整数 | - |
+| 有资假工数 | `ptoDays` | 正整数 | - |
+| 岗位工资 | `positionSalary` | 浮点数 | 保留两位小数 |
+| 井下职业健康岗位工资 | `undergroundHealthSalary` |浮点数 | 保留两位小数 |
+| 年功工资 | `senioritySalary` | 正整数 | - |
+| 加班工资合计 | `overtimeSalaryTotal` | 浮点数 | 保留两位小数 |
+| 年休假工资 | `annualLeaveSalary` | 浮点数 | 保留两位小数 |
+| 培训工资 | `trainingSalary` | 浮点数 | 保留两位小数 |
+| 婚假工资 | `marriageLeaveSalary` | 浮点数 | 保留两位小数 |
+| 探亲假工资 | `familyVisitLeaveSalary` | 浮点数 | 保留两位小数 |
+| 有资产假工资 | `propertyLeaveSalary` | 浮点数 | 保留两位小数 |
+| 丧假工资 | `bereavementLeaveSalary` | 浮点数 | 保留两位小数 |
+| 病假工资 | `sickLeaveSalary` | 数值 | 浮点数 | 保留两位小数 |
+| 下井津贴 | `undergroundAllowance` | 正整数 | - |
+| 夜班津贴 | `nightShiftAllowance` | 正整数 | - |
+| 值班津贴 | `dutyAllowance` | 正整数 | - |
+
+### 合计项目（系统计算字段）
+
+| 中文名称 | 英文变量名 | 数据类型 | 说明 | 计算公式 |
+|----------|------------|----------|------|----------|
+| 带薪假类工资合计 | `paidLeaveSalaryTotal` | 浮点数 | 保留两位小数 |
+| 辅助工资合计 | `auxiliarySalaryTotal` | 正整数 | - |
+| 绩效工资合计 | `performanceSalaryTotal` | 浮点数 | 保留两位小数 |
+| 安全结构工资 | `safetyStructureSalary` | 浮点数 | 保留两位小数 |
+| 应领工资 | `grossSalary` | 浮点数 | 保留两位小数 |
+| 个人代扣代缴合计 | `personalDeductionTotal` | 浮点数 | 保留两位小数 |
+| 其他扣减项目 | `otherDeductions` | 正整数 | - |
+| 实领工资 | `netSalary` | 浮点数 | 保留两位小数 |
+
+## 系统配置变量
+
+### 文件处理配置
+
+| 中文名称 | 英文变量名 | 数据类型 | 默认值 | 说明 |
+|----------|------------|----------|--------|------|
+| 最大文件大小限制 | `maxFileSize` | 数值 | 50MB | Excel文件最大大小 |
+| 支持的文件格式 | `supportedFormats` | 数组 | [".xlsx", ".xls"] | 支持的Excel格式 |
+| Excel模板路径 | `excelTemplatePath` | 字符串 | "/templates/" | 导出模板存储路径 |
+
+### 性能参数配置
+
+| 中文名称 | 英文变量名 | 数据类型 | 默认值 | 说明 |
+|----------|------------|----------|--------|------|
+| 批处理大小 | `batchSize` | 数值 | 1000 | 批量处理的记录数 |
+| 超时时间 | `timeout` | 数值 | 300秒 | 操作超时时间 |
+| 最大并发用户数 | `maxConcurrentUsers` | 数值 | 100 | 同时在线用户数限制 |
+
+### 计算规则参数配置
+
+| 中文名称 | 英文变量名 | 数据类型 | 说明 |
+|----------|------------|----------|------|
+| 各项津贴计算标准 | `allowanceCalculationStandards` | 对象 | 各类津贴的计算标准和规则 |
+| 扣款计算规则 | `deductionCalculationRules` | 对象 | 各项扣款的计算规则 |
+| 考勤工资计算规则 | `attendanceSalaryRules` | 对象 | 基于考勤数据的工资计算规则 |
+| 绩效工资分配规则 | `performanceSalaryDistributionRules` | 对象 | 绩效工资的分配计算规则 |
+
+## Excel导入字段映射
+
+### 必填字段
+- 员工编码（唯一标识）(`employeeId`)
+- 员工姓名 (`employeeName`)
+- 部门编码 (`departmentId`)
+
+### 可选字段
+根据实际业务需要，其他字段可作为可选项导入
+
+### 数据验证规则
+- 员工编码不能为空且唯一
+- 数值型字段必须为有效数字
+- 日期字段格式必须正确
+- 考勤工数不能为负数
+
+
+
+### 英文变量名命名规则
+1. **驼峰命名法** (camelCase)
+2. **语义化命名** - 变量名要清楚表达含义
+3. **一致性** - 同类型变量使用相同前缀
+4. **简洁性** - 在表达清楚的前提下尽量简洁
+
+### 变量分类前缀
+- 考勤相关：`*Days`, `*Leave`
+- 薪资相关：`*Salary`, `*Allowance`, `*Deduction`
+- 保险相关：`*Insurance`, `*Fund`
+- 系统配置：`max*`, `*Path`, `*Size`
+
+## 数据导入处理流程
+
+### 1. Excel文件解析
+1. **读取Excel列标题** - 获取所有字段名
+2. **字段映射** - 根据此文档将Excel字段名转换为系统变量名
+3. **数据验证** - 按照验证规则检查数据有效性
+4. **类型转换** - 将数据转换为指定的数据类型
+5. **存储处理** - 使用系统变量名存储到数据库
+
+### 2. 映射规则
+- **一对一映射**: 一个Excel字段对应一个系统变量
+- **必填验证**: 标记为必填的字段必须提供有效数据
+- **数据类型**: 确保数据类型匹配
+- **验证规则**: 按照指定规则进行数据验证
+
+### 3. 错误处理
+- **字段缺失**: 必填字段缺失时提示错误
+- **数据类型错误**: 数据类型不匹配时提示转换失败
+- **验证失败**: 数据不符合验证规则时提示具体错误
+- **重复数据**: 员工编码重复时提示冲突
+
+---
+
+**说明**:
+1. **中文名称** - Excel表格中显示的字段名称，便于用户理解
+2. **英文变量名** - 程序开发使用的标准变量名，用于数据库字段和API参数
+3. **Excel字段名** - Excel文件实际的列标题，用于数据导入时的字段匹配
+4. **数据类型** - 字段的数据类型，用于数据验证和转换
+5. **必填项** - 标识该字段是否为必填项
+6. **验证规则** - 数据的有效性验证规则
+7. **系统计算字段** - 不需要从Excel导入，由系统根据公式自动计算
+8. **配置字段** - 系统配置参数，通常不来自Excel数据
+
+**使用指南**:
+- Excel导入时，系统会根据Excel字段名自动映射到对应的系统变量名
+- 开发时使用英文变量名进行数据库设计和API开发
+- 用户界面显示使用中文名称，便于用户理解
+- 新增字段时，请在此文档中添加对应的映射关系

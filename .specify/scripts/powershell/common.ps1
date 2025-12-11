@@ -89,7 +89,8 @@ function Test-FeatureBranch {
 
 function Get-FeatureDir {
     param([string]$RepoRoot, [string]$Branch)
-    Join-Path $RepoRoot "specs/$Branch"
+    # 直接返回specs目录，不再使用分支名作为子目录
+    Join-Path $RepoRoot "specs"
 }
 
 function Get-FeaturePathsEnv {
