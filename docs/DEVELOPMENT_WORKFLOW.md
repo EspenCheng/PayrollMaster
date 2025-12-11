@@ -24,17 +24,18 @@ PayrollMaster 采用"本地文档 + Docker沙箱"的混合开发模式，这种�
 在本地打开项目文档，了解需求和规范：
 ```bash
 # 在Windows资源管理器中浏览
-docs/
-├── requirements/
-│   ├── 01-功能规格说明书.md
-│   ├── 02-API设计文档.md
-│   └── 03-数据库设计.md
-├── architecture/
-│   ├── 系统架构图.md
-│   └── 模块说明.md
+specs/
+├── spec.md                    # 功能规格说明书
+├── plan.md                    # 实施计划
+├── tasks.md                   # 任务清单
+├── data-model.md              # 数据模型设计
+├── research.md                # 技术研究报告
+├── contracts/
+│   └── api-endpoints.md       # API端点规范
 └── guides/
-    ├── 快速开始.md
-    └── 开发指南.md
+    ├── excel-format-spec.md   # Excel格式规范
+    ├── frontend-architecture.md # 前端架构设计
+    └── python-coding-standards.md # Python编码规范
 ```
 
 ### 步骤2：启动开发环境
@@ -94,7 +95,7 @@ frontend/
 
 #### 1. 需求分析
 ```markdown
-# 阅读 docs/requirements/01-功能规格说明书.md
+# 阅读 specs/spec.md
 ## 薪资计算模块
 - 输入：员工ID、月份、绩效系数
 - 输出：基本工资、奖金、扣除、实发工资
@@ -103,7 +104,7 @@ frontend/
 
 #### 2. 设计评审
 ```markdown
-# 查看 docs/architecture/02-API设计文档.md
+# 查看 specs/contracts/api-endpoints.md
 POST /api/employees/{id}/calculate-salary
 {
   "month": "2025-01",
@@ -356,16 +357,16 @@ docker-compose -f docker-compose.dev.yml logs -f --tail=100
 
 ## 📚 相关文档
 
-- [DOCKER_DEV_GUIDE.md](./DOCKER_DEV_GUIDE.md) - Docker开发环境详细指南
-- [DOCKER_QUICKREF.md](./DOCKER_QUICKREF.md) - Docker命令快速参考
-- [POSTGRESQL_SETUP.md](./POSTGRESQL_SETUP.md) - PostgreSQL配置指南
+- [环境配置指南](./environment-setup.md) - 环境要求和安装说明
+- [Docker开发指南](./docker-development.md) - Docker开发环境详细指南
+- [项目宪章](../.specify/memory/constitution.md) - 开发最高准则和规范
 
 ## 🆘 获取帮助
 
 ### 文档查阅
 1. 首先查看本指南的故障排除部分
-2. 查看 [DOCKER_DEV_GUIDE.md](./DOCKER_DEV_GUIDE.md)
-3. 查看项目宪章 `.specify/memory/constitution.md`
+2. 查看 [Docker开发指南](./docker-development.md)
+3. 查看项目宪章 `../.specify/memory/constitution.md`
 
 ### 日志分析
 ```bash
