@@ -34,7 +34,7 @@
 
 ### 文档更新
 
-1. **03-实施计划.md** - 更新技术栈信息
+1. **plan.md** - 更新技术栈信息
    - ✅ 后端：Python 3.11 + FastAPI + SQLModel + PostgreSQL
    - ✅ 前端：Next.js 14 (App Router) + Tailwind CSS
    - ✅ 项目类型：Web应用 (前后端分离架构)
@@ -46,7 +46,7 @@
 
 ### 新增设计文档
 
-3. **frontend-design-02-功能规格说明书.md** (10000+ 字)
+3. **frontend-design-spec.md** (10000+ 字)
    - ✅ 完整的设计系统（配色、字体、圆角、阴影）
    - ✅ 8个核心页面详细设计规范
    - ✅ 组件设计规范（按钮、输入框、卡片、表格、模态框）
@@ -198,14 +198,14 @@ app/
 
 | 文档名称 | 路径 | 描述 |
 |----------|------|------|
-| 规划文档 | `03-实施计划.md` | 项目整体规划 |
-| 功能规格 | `02-功能规格说明书.md` | 功能需求详细说明 |
-| 数据模型 | `04-数据模型设计.md` | 数据库设计 |
-| API规范 | `contracts/42-API端点规范.md` | REST API文档 |
+| 规划文档 | `plan.md` | 项目整体规划 |
+| 功能规格 | `spec.md` | 功能需求详细说明 |
+| 数据模型 | `data-model.md` | 数据库设计 |
+| API规范 | `contracts/api-endpoints.md` | REST API文档 |
 | OpenAPI | `contracts/openapi.yaml` | API契约 |
-| 快速入门 | `06-快速开始指南.md` | 部署和上手指南 |
-| 前端设计 | `frontend-design-02-功能规格说明书.md` | **完整前端设计规范** |
-| 技术分析 | `32-技术栈分析.md` | **技术栈对比分析** |
+| 快速入门 | `quickstart.md` | 部署和上手指南 |
+| 前端设计 | `frontend-design-spec.md` | **完整前端设计规范** |
+| 技术分析 | `tech-stack-analysis.md` | **技术栈对比分析** |
 | 架构蓝图 | `21-前端架构设计.md` | **前端架构图解** |
 
 ---
@@ -236,11 +236,11 @@ app/
 - 第3行开始：实际数据
 
 **更新文档**：
-- ✅ `frontend-design-02-功能规格说明书.md` - 添加Excel文件格式说明
-- ✅ `06-快速开始指南.md` - 更新Excel导入指南
-- ✅ `04-数据模型设计.md` - 新增Excel字段映射章节
-- ✅ `contracts/42-API端点规范.md` - 更新API文档中的Excel说明
-- ✅ `excel-format-02-功能规格说明书.md` - 创建专门的Excel格式规范文档（15000+字）
+- ✅ `frontend-design-spec.md` - 添加Excel文件格式说明
+- ✅ `quickstart.md` - 更新Excel导入指南
+- ✅ `data-model.md` - 新增Excel字段映射章节
+- ✅ `contracts/api-endpoints.md` - 更新API文档中的Excel说明
+- ✅ `excel-format-spec.md` - 创建专门的Excel格式规范文档（15000+字）
 
 **新增文档**：
-- `excel-format-02-功能规格说明书.md` - 完整的Excel格式规范，包含字段映射、验证规则、技术实现等
+- `excel-format-spec.md` - 完整的Excel格式规范，包含字段映射、验证规则、技术实现等
