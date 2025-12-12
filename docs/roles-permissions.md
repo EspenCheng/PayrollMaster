@@ -15,27 +15,27 @@
 - **权限范围**: 系统全部功能
 - **典型用户**: IT部门、系统维护人员
 
-### 2. 职工调配管理员 (staff-transfer-admin)
+### 2. 职工调配管理员 (staff-admin)
 - **职责**: 负责职工单位调动、岗位变动业务管理
 - **权限范围**: 职工调配相关功能 + 用户管理权限
 - **典型用户**: 人事部门调配专员
 
-### 3. 职工考勤管理员 (attendance-admin)
+### 3. 职工考勤管理员 (attendance)
 - **职责**: 负责职工各项出勤数据管理和维护
 - **权限范围**: 考勤管理相关功能
 - **典型用户**: 人事部门考勤专员
 
-### 4. 社保管理员 (social-security-admin)
+### 4. 社保管理员 (security)
 - **职责**: 负责职工社保核算、提报、修改等社保相关业务
 - **权限范围**: 社保管理相关功能
 - **典型用户**: 人事部门社保专员
 
-### 5. 财务管理员 (finance-admin)
+### 5. 财务管理员 (finance)
 - **职责**: 负责职工个人所得税计算及提报
 - **权限范围**: 税务管理相关功能
 - **典型用户**: 财务部门税务专员
 
-### 6. 单位薪资核算员 (payroll-calculator)
+### 6. 单位薪资核算员 (payroll)
 - **职责**: 负责本单位薪资数据提报及核算任务
 - **权限范围**: 薪资计算和本单位数据管理
 - **典型用户**: 各单位薪资核算专员
@@ -48,7 +48,7 @@
 ## 角色权限矩阵
 
 | 功能模块 | 系统管理员 | 职工调配管理员 | 职工考勤管理员 | 社保管理员 | 财务管理员 | 单位薪资核算员 |
-|:--------:|:---------:|:-------------:|:-------------:|:---------:|:---------:|:-------------:|
+|:--------|:---------:|:-------------:|:-------------:|:---------:|:---------:|:-------------:|
 | **用户管理** | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ |
 | **职工银行卡号维护** | ✓ | ✗ | ✗ | ✗ | ✓ | ✓ |
 | **薪资规则配置** | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ |
@@ -170,14 +170,14 @@
 
 ```python
 # 示例：薪资计算API
-@require_role(['admin', 'payroll-calculator'])
+@require_role(['admin', 'payroll'])
 def calculate_payroll():
-    # 如果是payroll-calculator，只能计算本单位数据
+    # 如果是payroll，只能计算本单位数据
     # 如果是admin，可以计算所有数据
     pass
 
 # 示例：用户管理API
-@require_role(['admin', 'staff-transfer-admin'])
+@require_role(['admin', 'staff-admin'])
 def create_user():
     # 只有admin和职工调配管理员可以创建用户
     pass
@@ -192,12 +192,12 @@ const routes = [
   {
     path: '/payroll/calculate',
     component: PayrollCalculation,
-    requiredRoles: ['admin', 'payroll-calculator']
+    requiredRoles: ['admin', 'payroll']
   },
   {
     path: '/users',
     component: UserManagement,
-    requiredRoles: ['admin', 'staff-transfer-admin']
+    requiredRoles: ['admin', 'staff-admin']
   }
 ];
 ```
@@ -209,11 +209,11 @@ const routes = [
 ALTER TABLE users
 ADD COLUMN role ENUM(
   'admin',
-  'staff-transfer-admin',
-  'attendance-admin',
-  'social-security-admin',
-  'finance-admin',
-  'payroll-calculator',
+  'staff-admin',
+  'attendance',
+  'security',
+  'finance',
+  'payroll',
   'employee'
 ) NOT NULL DEFAULT 'employee';
 ```
@@ -248,8 +248,8 @@ class RoleBasedAccessControl:
 
 ### 示例日志
 ```
-2025-12-12 10:30:45 | User: zhangsan | Role: payroll-calculator | Action: 计算薪资 | Resource: /api/v1/calculate | Result: SUCCESS
-2025-12-12 10:31:02 | User: lisi | Role: attendance-admin | Action: 修改出勤 | Resource: /api/v1/attendance/update | Result: FAILED (无权限)
+2025-12-12 10:30:45 | User: zhangsan | Role: payroll | Action: 计算薪资 | Resource: /api/v1/calculate | Result: SUCCESS
+2025-12-12 10:31:02 | User: lisi | Role: attendance | Action: 修改出勤 | Resource: /api/v1/attendance/update | Result: FAILED (无权限)
 ```
 
 ## 未来扩展
