@@ -203,7 +203,7 @@
 | 绩效工资合计 | `performanceSalaryTotal` | 浮点数 | 保留两位小数 |
 | 安全结构工资 | `safetyStructureSalary` | 浮点数 | 保留两位小数 |
 | 应领工资 | `grossSalary` | 浮点数 | 保留两位小数 |
-| 个人代扣代缴合计 | `personalDeductionTotal` | 浮点数 | 保留两位小数 |
+| 个人代扣代缴合计 | `personalDeductionTotal` | 浮点数 | 保留两位小数 | 个人应缴纳的各项社会保险和公积金的合计，包括养老保险、医疗保险、失业保险、住房公积金、企业年金、互助金等个人缴费部分 |
 | 其他扣减项目 | `otherDeductions` | 正整数 | - |
 | 实领工资 | `netSalary` | 浮点数 | 保留两位小数 |
 
