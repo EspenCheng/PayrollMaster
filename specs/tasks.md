@@ -267,9 +267,10 @@ description: "PayrollMaster薪资自动核算系统 - 可执行任务清单"
   - 令牌过期处理
   - 密码加密存储（bcrypt）
 - [ ] T071 [P] [US6] 实现RBAC权限控制（backend/src/core/permissions.py）
-  - 角色定义：admin/manager/accountant/employee
+  - 角色定义：admin/staff-transfer-admin/attendance-admin/social-security-admin/finance-admin/payroll-calculator/employee
   - 权限检查中间件
   - 装饰器方式权限验证
+  - 数据范围过滤（本单位数据隔离）
 - [ ] T072 [US6] 实现用户管理页面（frontend/src/pages/UserManagement.tsx）
 - [ ] T073 [US6] 创建登录页面（frontend/src/pages/Login.tsx）
 - [ ] T074 [US6] 实现认证状态管理（frontend/src/contexts/AuthContext.tsx）
