@@ -517,7 +517,7 @@ class User(SQLModel, table=True):
     hashedPassword: str = Field(description="加密密码")
     fullName: str = Field(description="姓名")
     email: Optional[str] = Field(default=None, description="邮箱（非必填）")
-    role: str = Field(index=True, description="角色：admin/staff-admin/attendance/security/finance/payroll/employee")
+    role: str = Field(index=True, description="角色：admin/staff_admin/attendance/security/finance/payroll/employee")
 
     # 权限
     isActive: bool = Field(default=True, description="是否激活")
@@ -723,7 +723,7 @@ def parseEmployeeExcel(worksheet):
    - 请假天数 ≥ 0
 
 3. **权限控制**：
-   - 只有admin和staff-admin角色可以创建/删除用户
+   - 只有admin和staff_admin角色可以创建/删除用户
    - 只有admin可以访问薪资规则配置
    - payroll角色只能查看和操作本单位数据
    - 各类管理员只能访问自己职责范围内的功能模块

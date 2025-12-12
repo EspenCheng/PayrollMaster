@@ -12,7 +12,7 @@
 |------|----------|----------|----------|------|
 | 1️⃣ | **数据库字段** | snake_case | 数据库表、列、索引 | `employee_id`, `base_salary` |
 | 2️⃣ | **API响应** | camelCase | JSON数据传输 | `employeeId`, `baseSalary` |
-| 3️⃣ | **后端Python** | camelCase | 函数、变量、类方法 | `calculatePayroll`, `employeeId` |
+| 3️⃣ | **后端Python** | snake_case | 函数、变量、类方法 | `calculate_payroll`, `employee_id` |
 | 4️⃣ | **前端TypeScript** | camelCase | React组件、状态管理 | `employeeId`, `baseSalary` |
 | 5️⃣ | **Excel字段** | camelCase | 导入/导出文件 | `employeeId`, `bankAccount` |
 | 6️⃣ | **OpenAPI规范** | camelCase | API文档、Swagger | `employeeId`, `baseSalary` |
@@ -26,39 +26,52 @@
 
 | 数据库字段 | API/JSON | Python代码 | 前端TS | Excel字段 | OpenAPI | 外键 |
 |------------|----------|------------|--------|-----------|---------|------|
-| `employee_id` | `employeeId` | `employeeId` | `employeeId` | `employeeId` | `employeeId` | `employeeId` |
-| `employee_name` | `employeeName` | `employeeName` | `employeeName` | `employeeName` | `employeeName` | - |
-| `id_card_number` | `idCardNumber` | `idCardNumber` | `idCardNumber` | `idCardNumber` | `idCardNumber` | - |
-| `department_id` | `departmentId` | `departmentId` | `departmentId` | `departmentId` | `departmentId` | `departmentId` |
-| `department_name` | `departmentName` | `departmentName` | `departmentName` | `departmentName` | `departmentName` | - |
-| `hire_date` | `hireDate` | `hireDate` | `hireDate` | `hireDate` | `hireDate` | - |
-| `bank_account` | `bankAccount` | `bankAccount` | `bankAccount` | `bankAccount` | `bankAccount` | - |
-| `created_at` | `createdAt` | `createdAt` | `createdAt` | `createdAt` | `createdAt` | - |
-| `updated_at` | `updatedAt` | `updatedAt` | `updatedAt` | `updatedAt` | `updatedAt` | - |
+| `employee_id` | `employeeId` | `employee_id` | `employeeId` | `employeeId` | `employeeId` | `employeeId` |
+| `employee_name` | `employeeName` | `employee_name` | `employeeName` | `employeeName` | `employeeName` | - |
+| `id_card_number` | `idCardNumber` | `id_card_number` | `idCardNumber` | `idCardNumber` | `idCardNumber` | - |
+| `department_id` | `departmentId` | `department_id` | `departmentId` | `departmentId` | `departmentId` | `departmentId` |
+| `department_name` | `departmentName` | `department_name` | `departmentName` | `departmentName` | `departmentName` | - |
+| `hire_date` | `hireDate` | `hire_date` | `hireDate` | `hireDate` | `hireDate` | - |
+| `bank_account` | `bankAccount` | `bank_account` | `bankAccount` | `bankAccount` | `bankAccount` | - |
+| `role` | `role` | `role` | `role` | `role` | `role` | - |
+| `created_at` | `createdAt` | `created_at` | `createdAt` | `createdAt` | `createdAt` | - |
+| `updated_at` | `updatedAt` | `updated_at` | `updatedAt` | `updatedAt` | `updatedAt` | - |
 
 ### 薪资相关字段
 
 | 数据库字段 | API/JSON | Python代码 | 前端TS | Excel字段 | OpenAPI | 外键 |
 |------------|----------|------------|--------|-----------|---------|------|
-| `base_salary` | `baseSalary` | `baseSalary` | `baseSalary` | `baseSalary` | `baseSalary` | - |
-| `position_salary_base` | `positionSalaryBase` | `positionSalaryBase` | `positionSalaryBase` | `positionSalaryBase` | `positionSalaryBase` | - |
-| `gross_pay` | `grossPay` | `grossPay` | `grossPay` | `grossPay` | `grossPay` | - |
-| `net_pay` | `netPay` | `netPay` | `netPay` | `netPay` | `netPay` | - |
-| `personal_income_tax` | `personalIncomeTax` | `personalIncomeTax` | `personalIncomeTax` | `personalIncomeTax` | `personalIncomeTax` | - |
-| `calculation_date` | `calculationDate` | `calculationDate` | `calculationDate` | `calculationDate` | `calculationDate` | - |
-| `performance_bonus` | `performanceBonus` | `performanceBonus` | `performanceBonus` | `performanceBonus` | `performanceBonus` | - |
-| `overtime_pay` | `overtimePay` | `overtimePay` | `overtimePay` | `overtimePay` | `overtimePay` | - |
+| `base_salary` | `baseSalary` | `base_salary` | `baseSalary` | `baseSalary` | `baseSalary` | - |
+| `position_salary_base` | `positionSalaryBase` | `position_salary_base` | `positionSalaryBase` | `positionSalaryBase` | `positionSalaryBase` | - |
+| `gross_pay` | `grossPay` | `gross_pay` | `grossPay` | `grossPay` | `grossPay` | - |
+| `net_pay` | `netPay` | `net_pay` | `netPay` | `netPay` | `netPay` | - |
+| `personal_income_tax` | `personalIncomeTax` | `personal_income_tax` | `personalIncomeTax` | `personalIncomeTax` | `personalIncomeTax` | - |
+| `calculation_date` | `calculationDate` | `calculation_date` | `calculationDate` | `calculationDate` | `calculationDate` | - |
+| `performance_bonus` | `performanceBonus` | `performance_bonus` | `performanceBonus` | `performanceBonus` | `performanceBonus` | - |
+| `overtime_pay` | `overtimePay` | `overtime_pay` | `overtimePay` | `overtimePay` | `overtimePay` | - |
 
 ### 考勤相关字段
 
 | 数据库字段 | API/JSON | Python代码 | 前端TS | Excel字段 | OpenAPI | 外键 |
 |------------|----------|------------|--------|-----------|---------|------|
-| `attendance_days` | `attendanceDays` | `attendanceDays` | `attendanceDays` | `attendanceDays` | `attendanceDays` | - |
-| `sick_leave_days` | `sickLeaveDays` | `sickLeaveDays` | `sickLeaveDays` | `sickLeaveDays` | `sickLeaveDays` | - |
-| `personal_leave_days` | `personalLeaveDays` | `personalLeaveDays` | `personalLeaveDays` | `personalLeaveDays` | `personalLeaveDays` | - |
-| `system_work_days` | `systemWorkDays` | `systemWorkDays` | `systemWorkDays` | `systemWorkDays` | `systemWorkDays` | - |
-| `business_trip_days` | `businessTripDays` | `businessTripDays` | `businessTripDays` | `businessTripDays` | `businessTripDays` | - |
-| `training_days` | `trainingDays` | `trainingDays` | `trainingDays` | `trainingDays` | `trainingDays` | - |
+| `attendance_days` | `attendanceDays` | `attendance_days` | `attendanceDays` | `attendanceDays` | `attendanceDays` | - |
+| `sick_leave_days` | `sickLeaveDays` | `sick_leave_days` | `sickLeaveDays` | `sickLeaveDays` | `sickLeaveDays` | - |
+| `personal_leave_days` | `personalLeaveDays` | `personal_leave_days` | `personalLeaveDays` | `personalLeaveDays` | `personalLeaveDays` | - |
+| `system_work_days` | `systemWorkDays` | `system_work_days` | `systemWorkDays` | `systemWorkDays` | `systemWorkDays` | - |
+| `business_trip_days` | `businessTripDays` | `business_trip_days` | `businessTripDays` | `businessTripDays` | `businessTripDays` | - |
+| `training_days` | `trainingDays` | `training_days` | `trainingDays` | `trainingDays` | `trainingDays` | - |
+
+### 角色字段映射
+
+| 数据库角色值 | API/JSON | Python代码 | 前端TS | 说明 |
+|------------|----------|------------|--------|------|
+| `admin` | `admin` | `admin` | `admin` | 系统管理员 |
+| `staff_admin` | `staffAdmin` | `staff_admin` | `staffAdmin` | 职工调配管理员 |
+| `attendance` | `attendance` | `attendance` | `attendance` | 职工考勤管理员 |
+| `security` | `security` | `security` | `security` | 社保管理员 |
+| `finance` | `finance` | `finance` | `finance` | 财务管理员 |
+| `payroll` | `payroll` | `payroll` | `payroll` | 单位薪资核算员 |
+| `employee` | `employee` | `employee` | `employee` | 普通员工 |
 
 ---
 
@@ -84,14 +97,14 @@ excel_data = {
 
 # 2. API接收 (保持camelCase)
 @router.post("/employees")
-async def createEmployee(data: EmployeeCreate):
-    employeeId = data.employeeId
-    baseSalary = data.baseSalary
+async def create_employee(data: EmployeeCreate):
+    employee_id = data.employeeId
+    base_salary = data.baseSalary
 
 # 3. 数据库存储 (转换为snake_case)
 db_employee = Employee(
-    employee_id=employeeId,  # camelCase → snake_case
-    base_salary=baseSalary,
+    employee_id=employee_id,  # camelCase → snake_case
+    base_salary=base_salary,
     hire_date=data.hireDate
 )
 ```
@@ -185,18 +198,18 @@ CREATE TABLE payroll_record (
 ### 外键查询示例
 
 ```python
-# 通过 employeeId 查询考勤记录
-employeeId = "RYJM-0000137269"
+# 通过 employee_id 查询考勤记录
+employee_id = "RYJM-0000137269"
 
 # 1. 找到员工 (使用 employee_id 字段)
 employee = session.query(Employee).filter(
-    Employee.employee_id == employeeId
+    Employee.employee_id == employee_id
 ).first()
 
 # 2. 使用 employee.id 作为外键查询考勤
 if employee:
     attendance_records = session.query(AttendanceRecord).filter(
-        AttendanceRecord.employeeId == employee.id  # 使用employee.id
+        AttendanceRecord.employee_id == employee.id  # 使用employee.id
     ).all()
 
 # 3. 返回API响应 (转换为camelCase)
@@ -204,7 +217,7 @@ result = {
     "employeeId": employee.employee_id,
     "attendances": [
         {
-            "employeeId": record.employeeId,  # 外键字段
+            "employeeId": record.employee_id,  # 外键字段
             "date": record.date,
             "status": record.status
         }
@@ -262,7 +275,7 @@ camelToSnake("employeeId");   // → "employee_id"
 |------|------|------------|------|
 | **数据库** | snake_case | `^[a-z][a-z0-9_]*$` | `employee_id`, `base_salary` |
 | **API/JSON** | camelCase | `^[a-z][a-zA-Z0-9]*$` | `employeeId`, `baseSalary` |
-| **Python代码** | camelCase | `^[a-z][a-zA-Z0-9]*$` | `calculatePayroll`, `employeeId` |
+| **Python代码** | snake_case | `^[a-z][a-z0-9_]*$` | `calculate_payroll`, `employee_id` |
 | **前端TS** | camelCase | `^[a-z][a-zA-Z0-9]*$` | `employeeId`, `baseSalary` |
 | **Excel字段** | camelCase | `^[a-z][a-zA-Z0-9]*$` | `employeeId`, `bankAccount` |
 | **外键** | PascalCase | `^[A-Z][a-zA-Z0-9]*Id$` | `employeeId`, `departmentId` |
@@ -332,9 +345,11 @@ bad-names=foo,bar,baz
 |------------|------------|------|
 | `employee_id` (API) | `employeeId` | API应使用camelCase |
 | `employeeId` (数据库) | `employee_id` | 数据库应使用snake_case |
-| `employee_id` (Python变量) | `employeeId` | Python代码统一使用camelCase |
+| `employeeId` (Python变量) | `employee_id` | Python代码应使用snake_case |
 | `employeeId` (Excel) | `employeeId` | Excel字段名已定义 |
-| `employeecode` | `employeeId` | 应使用驼峰命名 |
+| `employeecode` | `employee_id` | 应使用snake_case或camelCase |
+| `staff-admin` (数据库) | `staff_admin` | 数据库应使用snake_case |
+| `staffAdmin` (Python) | `staff_admin` | Python代码应使用snake_case |
 
 ---
 
@@ -354,10 +369,11 @@ bad-names=foo,bar,baz
 - [ ] 确认使用的命名规范符合层级要求
 - [ ] 数据库字段使用 snake_case
 - [ ] API/JSON响应使用 camelCase
-- [ ] Python代码使用 camelCase
+- [ ] Python代码使用 snake_case
 - [ ] 前端代码使用 camelCase
 - [ ] Excel字段使用定义的 camelCase
 - [ ] 外键字段使用 PascalCase + Id
+- [ ] 角色名称符合各层命名规范
 
 ### 代码审查检查
 - [ ] 字段命名与映射表一致

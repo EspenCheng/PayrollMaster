@@ -15,7 +15,7 @@
 - **权限范围**: 系统全部功能
 - **典型用户**: IT部门、系统维护人员
 
-### 2. 职工调配管理员 (staff-admin)
+### 2. 职工调配管理员 (staff_admin)
 - **职责**: 负责职工单位调动、岗位变动业务管理
 - **权限范围**: 职工调配相关功能 + 用户管理权限
 - **典型用户**: 人事部门调配专员
@@ -177,7 +177,7 @@ def calculate_payroll():
     pass
 
 # 示例：用户管理API
-@require_role(['admin', 'staff-admin'])
+@require_role(['admin', 'staff_admin'])
 def create_user():
     # 只有admin和职工调配管理员可以创建用户
     pass
@@ -197,7 +197,7 @@ const routes = [
   {
     path: '/users',
     component: UserManagement,
-    requiredRoles: ['admin', 'staff-admin']
+    requiredRoles: ['admin', 'staffAdmin']
   }
 ];
 ```
@@ -209,7 +209,7 @@ const routes = [
 ALTER TABLE users
 ADD COLUMN role ENUM(
   'admin',
-  'staff-admin',
+  'staff_admin',
   'attendance',
   'security',
   'finance',
